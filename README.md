@@ -36,7 +36,7 @@ Nb. Door *open* toe te voegen aan een *details* element kun je deze standaard op
   <summary>uitwerken voor kick-off werkgroep</summary>
 
   ### Je opdracht:
-  [chesscom](www.chess.com/home) 
+  [chesscom](https://www.chess.com/home) 
 
   #### Screenshot(s) van de eerste pagina (small screen): 
   Home  
