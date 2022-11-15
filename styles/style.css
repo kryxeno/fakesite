@@ -1,34 +1,158 @@
+/*********************/
+/* CUSTOM PROPERTIES & FONTS */
+/*********************/
+
+:root {
+  --primaryColorText: #ffffff;
+  --secondaryColorText: hsla(0, 0%, 100%, 0.4);
+  --secondaryColorTextHover: hsla(0, 0%, 100%, 0.65);
+  --primaryColorBackground: #312e2b;
+  --secondaryFont: "Montserrat", sans-serif;
+  --sidePadding: 0.7rem;
+}
+
+@font-face {
+  font-family: Chess New;
+  src: url(./chessglyph-new.11d668b6.woff2);
+}
+
 /**************/
 /* CSS REMEDY */
 /**************/
-*, *::after, *::before {
-  box-sizing:border-box;  
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-button, summary {
-	cursor: pointer;
+button,
+summary {
+  cursor: pointer;
 }
 
-
-
-
-
-/*********************/
-/* CUSTOM PROPERTIES */
-/*********************/
-:root {
-	/* startje */
-	--color-text:#111;
-	--color-background:#eee;
+a {
+  text-decoration: none;
+  color: var(--primaryColorText);
 }
 
+li {
+  list-style: none;
+}
 
+button {
+  border: none;
+  background-color: transparent;
+}
 
+/**************/
+/* START CSS */
+/**************/
 
+html {
+  font-size: 10px;
+}
 
-/****************/
-/* JOUW STYLING */
-/****************/
+body {
+  background-color: var(--primaryColorBackground);
+  color: var(--primaryColorText);
+  font-family: Segoe UI, system-ui, Helvetica, Arial, sans-serif;
+  font-size: 1.4rem;
+  line-height: 1.43;
+  touch-action: manipulation;
+}
 
-/* jouw code */
+nav {
+  display: flex;
+  justify-content: space-between;
+  height: 4rem;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
 
+nav div {
+  display: flex;
+  align-items: center;
+}
+
+nav ul {
+  display: flex;
+  gap: 0.8em;
+}
+
+nav li a,
+nav div a:first-child,
+button {
+  font-family: Chess New;
+  font-size: 3.2rem;
+  line-height: 1;
+  color: var(--secondaryColorText);
+  /* transition: 0.1s; */
+}
+
+nav div a:first-child {
+  font-size: 4rem;
+  padding: 1rem;
+  margin-left: -1rem;
+}
+
+nav li a:hover,
+nav div a:first-child:hover {
+  color: var(--secondaryColorTextHover);
+}
+
+nav div a:nth-child(2)::before {
+  background: url(/images/nav.868410a1.png);
+  background-color: rgba(0, 0, 0, 0);
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-image: url("/images/nav.868410a1.png");
+  background-origin: padding-box;
+  background-clip: border-box;
+  background-size: 15.4rem auto;
+  background-position: -2.2rem 0.3rem;
+  content: "";
+  height: 3.75rem;
+  margin-right: auto;
+  width: 13.1rem;
+  display: block;
+  flex-shrink: 0;
+}
+
+section,
+body > header,
+body > footer {
+  padding: 0 var(--sidePadding);
+}
+
+main header {
+  position: relative;
+}
+
+main header img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+main header button {
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 2.8rem;
+  width: 2.8rem;
+  font-size: 2.8rem;
+  display: inline-block;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: hsla(0, 0%, 100%, 0.8);
+}
+
+main header button:hover {
+  opacity: 0.65;
+}
