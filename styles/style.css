@@ -106,11 +106,11 @@ nav div div a:first-child:hover {
 }
 
 nav div div a:nth-child(2)::before {
-  background: url(/images/nav.868410a1.png);
+  background: url("../images/nav.868410a1.png");
   background-color: rgba(0, 0, 0, 0);
   background-repeat: repeat;
   background-attachment: scroll;
-  background-image: url("/images/nav.868410a1@2x.png");
+  background-image: url("../images/nav.868410a1@2x.png");
   background-origin: padding-box;
   background-clip: border-box;
   background-size: 15.4rem auto;
@@ -190,11 +190,11 @@ nav aside ul li:nth-last-child(2) a {
 }
 
 nav aside li:not(:first-child) a::before {
-  background: url(/images/nav.868410a1.png);
+  background: url("../images/nav.868410a1.png");
   background-color: rgba(0, 0, 0, 0);
   background-repeat: repeat;
   background-attachment: scroll;
-  background-image: url("/images/nav.868410a1@2x.png");
+  background-image: url("../images/nav.868410a1@2x.png");
   background-origin: padding-box;
   background-clip: border-box;
   background-size: 15.4rem auto;
