@@ -56,7 +56,31 @@ Nb. Door *open* toe te voegen aan een *details* element kun je deze standaard op
   <summary>uitwerken na test in 1e werkgroep</summary>
 
   ### Bevindingen
-  Lijst met je bevindingen die in de test naar voren kwamen:
+  DIABETIS EN WAZIG
+
+  Grijze tekst is niet te lezen.
+  Hover is duidelijk.
+  Daily games titels niet te lezen.
+  Game informatie (friend & vs 0/0/0) niet te lezen.
+  Tekst bij popup is vaag.
+  Hover kan duidelijker.
+  Chessbord verschil is niet duidelijk loper en pion & wit tegel en pion.
+  Parkinsons is goed te navigeren.
+
+  KLEURENBLIND
+
+  Wel duidelijk grijswaardes.
+  Duidelijkere play knop.
+  (gewoon duidelijk)
+  Hover kan duidelijker als hij oplicht (hij wordt nu donkerder).
+  Hover over pion.
+
+  TOETSENBORD
+
+  Pionnen zijn niet goed te bewegen met toetsenbord.
+  De rest van de wereld.
+  Muis werkt ideaal.
+  Knoppen kunnen misschien iets beter (groter).
 
   #### Screenreader
   Hier korte omschrijving (met indien nodig afbeeldingen)
