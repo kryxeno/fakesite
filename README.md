@@ -1,304 +1,301 @@
 # Procesverslag
+
 Markdown is een simpele manier om HTML te schrijven.  
 Markdown cheat cheet: [Hulp bij het schrijven van Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).
 
 Nb. De standaardstructuur en de spartaanse opmaak van de README.md zijn helemaal prima. Het gaat om de inhoud van je procesverslag. Besteedt de tijd voor pracht en praal aan je website.
 
-Nb. Door *open* toe te voegen aan een *details* element kun je deze standaard open zetten. Fijn om dat steeds voor de relevante stuk(ken) te doen.
-
-
-
-
+Nb. Door _open_ toe te voegen aan een _details_ element kun je deze standaard open zetten. Fijn om dat steeds voor de relevante stuk(ken) te doen.
 
 ## Jij
 
 <details open>
   <summary>uitwerken voor kick-off werkgroep</summary>
 
-  ### Auteur:
-  Tim van Ingen
+### Auteur:
 
-  #### Je startniveau:
-  Zwart
+Tim van Ingen
 
-  #### Je focus:
-  Surface plane
- 
+#### Je startniveau:
+
+Zwart
+
+#### Je focus:
+
+Surface plane
+
 </details>
-
-
-
-
 
 ## Je website
 
 <details open>
   <summary>uitwerken voor kick-off werkgroep</summary>
 
-  ### Je opdracht:
-  [chesscom](https://www.chess.com/home) 
+### Je opdracht:
 
-  #### Screenshot(s) van de eerste pagina (small screen): 
-  Home  
-  <img src="./readme-images/Chesscom_home.png" width="375px" alt="homepage van chess.com">
+[chesscom](https://www.chess.com/home)
 
-  #### Screenshot(s) van de tweede pagina (small screen):
-  hier de naam van de pagina  
-  <img src="./readme-images/Chesscom_play.png" width="375px" alt="play pagina van chess.com">
- 
+#### Screenshot(s) van de eerste pagina (small screen):
+
+Home  
+ <img src="./readme-images/Chesscom_home.png" width="375px" alt="homepage van chess.com">
+
+#### Screenshot(s) van de tweede pagina (small screen):
+
+hier de naam van de pagina  
+ <img src="./readme-images/Chesscom_play.png" width="375px" alt="play pagina van chess.com">
+
 </details>
-
-
 
 ## Toegankelijkheidstest 1/2 (week 1)
 
 <details>
   <summary>uitwerken na test in 1e werkgroep</summary>
 
-  ### Bevindingen
-  DIABETIS EN WAZIG
+### Bevindingen
 
-  Grijze tekst is niet te lezen.
-  Hover is duidelijk.
-  Daily games titels niet te lezen.
-  Game informatie (friend & vs 0/0/0) niet te lezen.
-  Tekst bij popup is vaag.
-  Hover kan duidelijker.
-  Chessbord verschil is niet duidelijk loper en pion & wit tegel en pion.
-  Parkinsons is goed te navigeren.
+DIABETIS EN WAZIG
 
-  KLEURENBLIND
+Grijze tekst is niet te lezen.
+Hover is duidelijk.
+Daily games titels niet te lezen.
+Game informatie (friend & vs 0/0/0) niet te lezen.
+Tekst bij popup is vaag.
+Hover kan duidelijker.
+Chessbord verschil is niet duidelijk loper en pion & wit tegel en pion.
+Parkinsons is goed te navigeren.
 
-  Wel duidelijk grijswaardes.
-  Duidelijkere play knop.
-  (gewoon duidelijk)
-  Hover kan duidelijker als hij oplicht (hij wordt nu donkerder).
-  Hover over pion.
+KLEURENBLIND
 
-  TOETSENBORD
+Wel duidelijk grijswaardes.
+Duidelijkere play knop.
+(gewoon duidelijk)
+Hover kan duidelijker als hij oplicht (hij wordt nu donkerder).
+Hover over pion.
 
-  Pionnen zijn niet goed te bewegen met toetsenbord.
-  De rest van de wereld.
-  Muis werkt ideaal.
-  Knoppen kunnen misschien iets beter (groter).
+TOETSENBORD
 
-  #### Screenreader
-  Hier korte omschrijving (met indien nodig afbeeldingen)
+Pionnen zijn niet goed te bewegen met toetsenbord.
+De rest van de wereld.
+Muis werkt ideaal.
+Knoppen kunnen misschien iets beter (groter).
 
-  Hier een omschrijving van hoe het opgelost kan worden (met indien nodig afbeeldingen)
+SCREENREADER
 
+je kan niet het spel spelen.
+Geen 'naar main content' knop.
+Headings zijn een beetje raar.
 
-  #### Muis en Toetsenbord 
-  Hier korte omschrijving (met indien nodig afbeeldingen)
+#### Screenreader
 
-  Hier een omschrijving van hoe het opgelost kan worden (met indien nodig afbeeldingen)
+Er was geen 'main content' knop. Het navigeren van headings werkte ook niet altijd en deze was niet echt goed werkend voor de hele pagina. Hij ging bijvoorbeeld alleen door de artikelen heen i.p.v. de hele pagina.
 
+Main content knop toevoegen is vrij makkelijk. Verder moet er beter gebruik gemaakt worden van verschillende heading elementen.
 
-  #### Motoriek (shocks, elastiekjes)
-  Hier korte omschrijving (met indien nodig afbeeldingen)
+#### Muis en Toetsenbord & Motoriek (shocks, elastiekjes)
 
-  Hier een omschrijving van hoe het opgelost kan worden (met indien nodig afbeeldingen)
+De knoppen waren soms een beetje klein om consistent op te kunnen klikken. Verder was de site prima te navigeren. Op de gamepagina waren de pionnen niet echt te bewegen zonder muis, maar dat is buiten de scope van dit project.
 
+<img src="./readme-images/knoppenbeter.png" width="375px" alt="slecht te lezen tekst">
 
-  #### Visueel (brillen, contrast, kleurenblind, dark/light). 
-  Hier korte omschrijving (met indien nodig afbeeldingen)
+Dit zou opgelost kunnen worden door de knoppen groter te maken of om padding toe te voegen.
 
-  Hier een omschrijving van hoe het opgelost kan worden (met indien nodig afbeeldingen)
+#### Visueel (brillen, contrast, kleurenblind, dark/light).
+
+Er zijn een aantal titels en teksten die niet goed te lezen zijn omdat de grijswaardes onvoldoende contrast hebben (grotendeels als het gaat om mensen met een visuele beperking). Verder is de pion over een wit scherm niet heel goed te zien. Tot slot kan de hover iets duidelijker zijn.
+
+<img src="./readme-images/nietlezen.png" width="375px" alt="slecht te lezen tekst">
+
+<img src="./readme-images/hoveroverpion.png" width="375px" alt="slecht te zien pion">
+
+De tekst zou verbeterd kunnen worden door een andere kleur toe te voegen of door het contrast te verhogen met witte(re) tekst.
+Verder zou er een hoog contrast optie kunnen komen bij het schaakbord die er voor zou zorgen dat het verschil tussen de pion en achtergrond duidelijker wordt. Denk aan andere kleuren of een dikkere outline.
+
+Er staat play als tekst, wat sommige mensen op zouden kunnen vatten als 'de' play knop. Verder is het niet extreem duidelijk wanneer de knoppen gehovert worden.
+
+<img src="./readme-images/playknop.png" width="375px" alt="play knop">
+
+<img src="./readme-images/donkerder.png" width="375px" alt="hover state van knop">
+
+Play veranderen naar trofeeen of een soortgelijk woord. Ook kan de hover misschien inverted worden (wat zwart is wit maken en andersom ook)
 
 </details>
-
-
 
 ## Breakdownschets (week 1)
 
 <details>
   <summary>uitwerken na afloop 2e werkgroep</summary>
 
-  ### de hele pagina: 
+### de hele pagina:
+
   <img src="readme-images/dummy-plaatje.jpg" width="375px" alt="breakdown van de hele pagina">
 
-  ### dynamisch deel (bijv menu): 
+### dynamisch deel (bijv menu):
+
   <img src="readme-images/dummy-plaatje.jpg" width="375px" alt="breakdown van een dynamisch deel">
 
-  ### wellicht nog een dynamisch deel (bijv filter): 
+### wellicht nog een dynamisch deel (bijv filter):
+
   <img src="readme-images/dummy-plaatje.jpg" width="375px" alt="breakdown van nog een dynamisch deel">
 
 </details>
-
-
-
-
 
 ## Voortgang 1 (week 2)
 
 <details>
   <summary>uitwerken voor 1e voortgang</summary>
 
-  ### Stand van zaken
-  hier dit ging goed & dit was lastig (neem ook screenshots op van delen van je website en code)
+### Stand van zaken
 
+hier dit ging goed & dit was lastig (neem ook screenshots op van delen van je website en code)
 
-  ### Agenda voor meeting
-  samen met je groepje opstellen
+### Agenda voor meeting
 
-  | student 1      | student 2          | student 3    | student 4        |
-  | ---            | ---                | ---          | ---              |
-  | dit bespreken  | en dit             | en ik dit    | en dan ik dat    |
-  | en dat ook nog | dit als er tijd is | nog een punt | dit wil ik zeker |
-  | ...            | ...                | ...          | ...              |
+samen met je groepje opstellen
 
+| student 1      | student 2          | student 3    | student 4        |
+| -------------- | ------------------ | ------------ | ---------------- |
+| dit bespreken  | en dit             | en ik dit    | en dan ik dat    |
+| en dat ook nog | dit als er tijd is | nog een punt | dit wil ik zeker |
+| ...            | ...                | ...          | ...              |
 
-  ### Verslag van meeting
-  hier na afloop snel de uitkomsten van de meeting vastleggen
+### Verslag van meeting
 
-  - punt 1
-  - punt 2
-  - nog een punt
-  - ...
+hier na afloop snel de uitkomsten van de meeting vastleggen
+
+- punt 1
+- punt 2
+- nog een punt
+- ...
 
 </details>
-
-
-
-
 
 ## Voortgang 2 (week 3)
 
 <details>
   <summary>uitwerken voor 2e voortgang</summary>
 
-  ### Stand van zaken
-  hier dit ging goed & dit was lastig (neem ook screenshots op van delen van je website en code)
+### Stand van zaken
 
+hier dit ging goed & dit was lastig (neem ook screenshots op van delen van je website en code)
 
-  ### Agenda voor meeting
-  samen met je groepje opstellen
+### Agenda voor meeting
 
-  | student 1      | student 2          | student 3    | student 4        |
-  | ---            | ---                | ---          | ---              |
-  | dit bespreken  | en dit             | en ik dit    | en dan ik dat    |
-  | en dat ook nog | dit als er tijd is | nog een punt | dit wil ik zeker |
-  | ...            | ...                | ...          | ...              |
+samen met je groepje opstellen
 
+| student 1      | student 2          | student 3    | student 4        |
+| -------------- | ------------------ | ------------ | ---------------- |
+| dit bespreken  | en dit             | en ik dit    | en dan ik dat    |
+| en dat ook nog | dit als er tijd is | nog een punt | dit wil ik zeker |
+| ...            | ...                | ...          | ...              |
 
-  ### Verslag van meeting
-  hier na afloop snel de uitkomsten van de meeting vastleggen
+### Verslag van meeting
 
-  - punt 1
-  - punt 2
-  - nog een punt
+hier na afloop snel de uitkomsten van de meeting vastleggen
+
+- punt 1
+- punt 2
+- nog een punt
 - ...
 
 </details>
-
-
-
-
 
 ## Toegankelijkheidstest 2/2 (week 4)
 
 <details>
   <summary>uitwerken na test in 8e werkgroep</summary>
 
-  ### Bevindingen
-  Lijst met je bevindingen die in de test naar voren kwamen (geef ook aan wat er verbeterd is):
+### Bevindingen
 
-  #### Screenreader
-  Hier korte omschrijving (met indien nodig afbeeldingen)
+Lijst met je bevindingen die in de test naar voren kwamen (geef ook aan wat er verbeterd is):
 
-  Hier een omschrijving van hoe het opgelost kan worden (met indien nodig afbeeldingen)
+#### Screenreader
 
+Hier korte omschrijving (met indien nodig afbeeldingen)
 
-  #### Muis en Toetsenbord 
-  Hier korte omschrijving (met indien nodig afbeeldingen)
+Hier een omschrijving van hoe het opgelost kan worden (met indien nodig afbeeldingen)
 
-  Hier een omschrijving van hoe het opgelost kan worden (met indien nodig afbeeldingen)
+#### Muis en Toetsenbord
 
+Hier korte omschrijving (met indien nodig afbeeldingen)
 
-  #### Motoriek (shocks, elastiekjes)
-  Hier korte omschrijving (met indien nodig afbeeldingen)
+Hier een omschrijving van hoe het opgelost kan worden (met indien nodig afbeeldingen)
 
-  Hier een omschrijving van hoe het opgelost kan worden (met indien nodig afbeeldingen)
+#### Motoriek (shocks, elastiekjes)
 
+Hier korte omschrijving (met indien nodig afbeeldingen)
 
-  #### Visueel (brillen, contrast, kleurenblind, dark/light). 
-  Hier korte omschrijving (met indien nodig afbeeldingen)
+Hier een omschrijving van hoe het opgelost kan worden (met indien nodig afbeeldingen)
 
-  Hier een omschrijving van hoe het opgelost kan worden (met indien nodig afbeeldingen)
+#### Visueel (brillen, contrast, kleurenblind, dark/light).
+
+Hier korte omschrijving (met indien nodig afbeeldingen)
+
+Hier een omschrijving van hoe het opgelost kan worden (met indien nodig afbeeldingen)
 
 </details>
-
-
-
-
 
 ## Voortgang 3 (week 4)
 
 <details>
   <summary>uitwerken voor 3e voortgang</summary>
 
-  ### Stand van zaken
-  hier dit ging goed & dit was lastig (neem ook screenshots op van delen van je website en code)
+### Stand van zaken
 
+hier dit ging goed & dit was lastig (neem ook screenshots op van delen van je website en code)
 
-  ### Agenda voor meeting
-  samen met je groepje opstellen
+### Agenda voor meeting
 
-  | student 1      | student 2          | student 3    | student 4        |
-  | ---            | ---                | ---          | ---              |
-  | dit bespreken  | en dit             | en ik dit    | en dan ik dat    |
-  | en dat ook nog | dit als er tijd is | nog een punt | dit wil ik zeker |
-  | ...            | ...                | ...          | ...              |
+samen met je groepje opstellen
 
+| student 1      | student 2          | student 3    | student 4        |
+| -------------- | ------------------ | ------------ | ---------------- |
+| dit bespreken  | en dit             | en ik dit    | en dan ik dat    |
+| en dat ook nog | dit als er tijd is | nog een punt | dit wil ik zeker |
+| ...            | ...                | ...          | ...              |
 
-  ### Verslag van meeting
-  hier na afloop snel de uitkomsten van de meeting vastleggen
+### Verslag van meeting
 
-  - punt 1
-  - punt 2
-  - nog een punt
-  - ...
+hier na afloop snel de uitkomsten van de meeting vastleggen
+
+- punt 1
+- punt 2
+- nog een punt
+- ...
 
 </details>
-
-
-
-
 
 ## Eindgesprek (week 5)
 
 <details>
   <summary>uitwerken voor eindgesprek</summary>
 
-  ### Je uitkomst - karakteristiek screenshots:
+### Je uitkomst - karakteristiek screenshots:
+
   <img src="readme-images/dummy-plaatje.jpg" width="375px" alt="uitomst opdracht 1">
 
+### Dit ging goed/Heb ik geleerd:
 
-  ### Dit ging goed/Heb ik geleerd: 
-  Korte omschrijving met plaatjes
+Korte omschrijving met plaatjes
 
   <img src="readme-images/dummy-plaatje.jpg" width="375px" alt="top">
 
+### Dit was lastig/Is niet gelukt:
 
-  ### Dit was lastig/Is niet gelukt:
-  Korte omschrijving met plaatjes
+Korte omschrijving met plaatjes
 
   <img src="readme-images/dummy-plaatje.jpg" width="375px" alt="bummer">
 </details>
-
-
-
-
 
 ## Bronnenlijst
 
 <details open>
   <summary>continu bijhouden terwijl je werkt</summary>
 
-  Nb. Wees specifiek ('css-tricks' als bron is bijv. niet specifiek genoeg).
+Nb. Wees specifiek ('css-tricks' als bron is bijv. niet specifiek genoeg).
 
-  1. bron 1
-  2. bron 2
-  3. ...
+1. bron 1
+2. bron 2
+3. ...
 
 </details>
