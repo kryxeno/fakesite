@@ -52,6 +52,10 @@ button {
 /* START CSS */
 /**************/
 
+/**************/
+/* START NAV */
+/**************/
+
 html {
   font-size: 10px;
 }
@@ -133,6 +137,13 @@ nav aside {
   z-index: 1;
   transform: translateX(-100%);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.menuOpen {
+  transform: translateX(0%);
 }
 
 nav aside ul {
@@ -140,7 +151,8 @@ nav aside ul {
   gap: 0;
 }
 
-nav aside ul li:not(:last-child):hover {
+nav aside ul:first-child li:not(:last-child):hover,
+nav aside ul:last-child li:hover {
   background-color: rgba(0, 0, 10, 0.14);
 }
 
@@ -153,7 +165,7 @@ nav aside li a {
   align-items: center;
 }
 
-nav aside li:first-child a {
+nav aside ul:first-child li:first-child a {
   padding-left: 1.6rem;
 }
 
@@ -179,17 +191,17 @@ nav aside form input:hover {
   border-color: hsla(0, 0%, 100%, 0.3);
 }
 
-nav aside li:not(:first-child) a {
+nav aside ul:first-child li:not(:first-child) a {
   font-family: var(--primaryFont);
   font-size: 1.6rem;
   font-weight: bold;
 }
 
-nav aside ul li:nth-last-child(2) a {
+nav aside ul:first-child li:nth-last-child(2) a {
   color: #52b1dc;
 }
 
-nav aside li:not(:first-child) a::before {
+nav aside ul:first-child li:not(:first-child) a::before {
   background: url("../images/nav.868410a1.png");
   background-color: rgba(0, 0, 0, 0);
   background-repeat: repeat;
@@ -205,47 +217,74 @@ nav aside li:not(:first-child) a::before {
   margin-right: 1rem;
 }
 
-nav aside li:nth-child(2) a::before {
+nav aside ul:first-child li:nth-child(2) a::before {
   height: 2.15rem;
   background-position: 0.2rem -54.36rem;
   background-size: 18rem 158.7rem;
 }
 
-nav aside li:nth-child(3) a::before {
+nav aside ul:first-child li:nth-child(3) a::before {
   background-position: -2.1rem -7.8rem;
 }
 
-nav aside li:nth-child(4) a::before {
+nav aside ul:first-child li:nth-child(4) a::before {
   background-position: -2.3rem -11.4rem;
 }
 
-nav aside li:nth-child(5) a::before {
+nav aside ul:first-child ul:first-child li:nth-child(5) a::before {
   background-position: -2.3rem -15.15rem;
 }
 
-nav aside li:nth-child(6) a::before {
+nav aside ul:first-child li:nth-child(6) a::before {
   background-position: -2.3rem -18.75rem;
 }
 
-nav aside li:nth-child(7) a::before {
+nav aside ul:first-child li:nth-child(7) a::before {
   background-position: -2.3rem -33.75rem;
 }
 
-nav aside li:nth-child(8) a::before {
+nav aside ul:first-child li:nth-child(8) a::before {
   background-position: -2.3rem -22.65rem;
 }
 
-nav aside li:nth-child(9) a::before {
+nav aside ul:first-child li:nth-child(9) a::before {
   background-position: -2.3rem -26.25rem;
 }
 
-nav aside li:nth-child(10) a::before {
+nav aside ul:first-child li:nth-child(10) a::before {
   background-position: -2.3rem -30rem;
 }
 
-nav aside li a:hover {
+nav aside ul li a:hover {
   color: var(--primaryColorText);
 }
+
+nav aside ul:last-child {
+  margin: auto 0 2.5rem;
+}
+
+nav aside ul:last-child a {
+  font-family: var(--primaryFont);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: hsla(0, 0%, 100%, 0.5);
+  padding-top: 0;
+  padding-bottom: 0;
+  min-height: 0;
+}
+
+nav aside ul:last-child span {
+  font-family: Chess New;
+  font-size: 3.2rem;
+  font-weight: 400;
+  line-height: 1;
+  width: 3.2rem;
+  margin: 0 0.2rem 0 0.5rem;
+}
+
+/**************/
+/* START MAIN */
+/**************/
 
 section,
 body > header nav > div,
