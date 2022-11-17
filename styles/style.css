@@ -7,6 +7,7 @@
   --secondaryColorText: hsla(0, 0%, 100%, 0.4);
   --secondaryColorTextHover: hsla(0, 0%, 100%, 0.65);
   --primaryColorBackground: #312e2b;
+  --primaryFont: Segoe UI, system-ui, Helvetica, Arial, sans-serif;
   --secondaryFont: "Montserrat", sans-serif;
   --sidePadding: 0.7rem;
 }
@@ -58,13 +59,13 @@ html {
 body {
   background-color: var(--primaryColorBackground);
   color: var(--primaryColorText);
-  font-family: Segoe UI, system-ui, Helvetica, Arial, sans-serif;
+  font-family: var(--primaryFont);
   font-size: 1.4rem;
   line-height: 1.43;
   touch-action: manipulation;
 }
 
-nav {
+nav > div {
   display: flex;
   justify-content: space-between;
   height: 4rem;
@@ -73,7 +74,7 @@ nav {
   margin-bottom: 0.5rem;
 }
 
-nav div {
+nav div div {
   display: flex;
   align-items: center;
 }
@@ -84,7 +85,7 @@ nav ul {
 }
 
 nav li a,
-nav div a:first-child,
+nav div div a:first-child,
 button {
   font-family: Chess New;
   font-size: 3.2rem;
@@ -93,23 +94,23 @@ button {
   /* transition: 0.1s; */
 }
 
-nav div a:first-child {
+nav div div a:first-child {
   font-size: 4rem;
   padding: 1rem;
   margin-left: -1rem;
 }
 
 nav li a:hover,
-nav div a:first-child:hover {
+nav div div a:first-child:hover {
   color: var(--secondaryColorTextHover);
 }
 
-nav div a:nth-child(2)::before {
+nav div div a:nth-child(2)::before {
   background: url(/images/nav.868410a1.png);
   background-color: rgba(0, 0, 0, 0);
   background-repeat: repeat;
   background-attachment: scroll;
-  background-image: url("/images/nav.868410a1.png");
+  background-image: url("/images/nav.868410a1@2x.png");
   background-origin: padding-box;
   background-clip: border-box;
   background-size: 15.4rem auto;
@@ -122,8 +123,132 @@ nav div a:nth-child(2)::before {
   flex-shrink: 0;
 }
 
+nav aside {
+  position: absolute;
+  height: 100%;
+  width: 14.6rem;
+  background-color: #262421;
+  top: 0;
+  opacity: 1;
+  z-index: 1;
+  transform: translateX(-100%);
+  overflow: hidden;
+}
+
+nav aside ul {
+  flex-direction: column;
+  gap: 0;
+}
+
+nav aside ul li:not(:last-child):hover {
+  background-color: rgba(0, 0, 10, 0.14);
+}
+
+nav aside li a {
+  color: hsla(0, 0%, 100%, 0.8);
+  padding: 0.8rem 0 0.8rem 1rem;
+  min-height: 4.5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+nav aside li:first-child a {
+  padding-left: 1.6rem;
+}
+
+nav aside form {
+  margin: 0.8rem 1rem 2rem 1rem;
+}
+
+nav aside form input {
+  background-color: hsla(0, 0%, 100%, 0.1);
+  border: 0.1rem solid hsla(0, 0%, 100%, 0.1);
+  border-radius: 0.3rem;
+  height: 3rem;
+  line-height: 1;
+  width: 100%;
+  font-size: 1.6rem;
+  color: hsla(0, 0%, 100%, 0.45);
+  padding: 0.8rem;
+}
+
+nav aside form input:focus,
+nav aside form input:hover {
+  outline: 0;
+  border-color: hsla(0, 0%, 100%, 0.3);
+}
+
+nav aside li:not(:first-child) a {
+  font-family: var(--primaryFont);
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+nav aside ul li:nth-last-child(2) a {
+  color: #52b1dc;
+}
+
+nav aside li:not(:first-child) a::before {
+  background: url(/images/nav.868410a1.png);
+  background-color: rgba(0, 0, 0, 0);
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-image: url("/images/nav.868410a1@2x.png");
+  background-origin: padding-box;
+  background-clip: border-box;
+  background-size: 15.4rem auto;
+  content: "";
+  display: block;
+  height: 3rem;
+  width: 3rem;
+  margin-right: 1rem;
+}
+
+nav aside li:nth-child(2) a::before {
+  height: 2.15rem;
+  background-position: 0.2rem -54.36rem;
+  background-size: 18rem 158.7rem;
+}
+
+nav aside li:nth-child(3) a::before {
+  background-position: -2.1rem -7.8rem;
+}
+
+nav aside li:nth-child(4) a::before {
+  background-position: -2.3rem -11.4rem;
+}
+
+nav aside li:nth-child(5) a::before {
+  background-position: -2.3rem -15.15rem;
+}
+
+nav aside li:nth-child(6) a::before {
+  background-position: -2.3rem -18.75rem;
+}
+
+nav aside li:nth-child(7) a::before {
+  background-position: -2.3rem -33.75rem;
+}
+
+nav aside li:nth-child(8) a::before {
+  background-position: -2.3rem -22.65rem;
+}
+
+nav aside li:nth-child(9) a::before {
+  background-position: -2.3rem -26.25rem;
+}
+
+nav aside li:nth-child(10) a::before {
+  background-position: -2.3rem -30rem;
+}
+
+nav aside li a:hover {
+  color: var(--primaryColorText);
+}
+
 section,
-body > header,
+body > header nav > div,
 body > footer {
   padding: 0 var(--sidePadding);
 }
