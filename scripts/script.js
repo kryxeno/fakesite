@@ -1,8 +1,8 @@
 // JavaScript Document
 console.log("hi");
 
-const burgerIcon = document.querySelector("nav div div a:first-child");
-const closeIcon = document.querySelector("nav aside ul li:first-child a");
+const burgerIcon = document.querySelector("nav section div button");
+const closeIcon = document.querySelector("nav aside ul li:first-child button");
 const menu = document.querySelector("nav aside");
 let open = true;
 

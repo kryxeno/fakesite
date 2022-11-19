@@ -69,7 +69,7 @@ body {
   touch-action: manipulation;
 }
 
-nav > div {
+nav > section {
   display: flex;
   justify-content: space-between;
   height: 4rem;
@@ -78,7 +78,7 @@ nav > div {
   margin-bottom: 0.5rem;
 }
 
-nav div div {
+nav section div {
   display: flex;
   align-items: center;
 }
@@ -89,7 +89,6 @@ nav ul {
 }
 
 nav li a,
-nav div div a:first-child,
 button {
   font-family: Chess New;
   font-size: 3.2rem;
@@ -98,18 +97,19 @@ button {
   /* transition: 0.1s; */
 }
 
-nav div div a:first-child {
+nav section div button {
   font-size: 4rem;
   padding: 1rem;
   margin-left: -1rem;
 }
 
 nav li a:hover,
-nav div div a:first-child:hover {
+nav section div button:hover,
+nav section div a:first-child:hover {
   color: var(--secondaryColorTextHover);
 }
 
-nav div div a:nth-child(2)::before {
+nav section div a:nth-child(2)::before {
   background: url("../images/nav.868410a1.png");
   background-color: rgba(0, 0, 0, 0);
   background-repeat: repeat;
@@ -156,7 +156,9 @@ nav aside ul:last-child li:hover {
   background-color: rgba(0, 0, 10, 0.14);
 }
 
-nav aside li a {
+nav aside li a,
+nav aside ul:first-child button,
+nav aside ul:last-child button {
   color: hsla(0, 0%, 100%, 0.8);
   padding: 0.8rem 0 0.8rem 1rem;
   min-height: 4.5rem;
@@ -165,7 +167,7 @@ nav aside li a {
   align-items: center;
 }
 
-nav aside ul:first-child li:first-child a {
+nav aside ul:first-child button {
   padding-left: 1.6rem;
 }
 
@@ -231,7 +233,7 @@ nav aside ul:first-child li:nth-child(4) a::before {
   background-position: -2.3rem -11.4rem;
 }
 
-nav aside ul:first-child ul:first-child li:nth-child(5) a::before {
+nav aside ul:first-child li:nth-child(5) a::before {
   background-position: -2.3rem -15.15rem;
 }
 
@@ -255,7 +257,8 @@ nav aside ul:first-child li:nth-child(10) a::before {
   background-position: -2.3rem -30rem;
 }
 
-nav aside ul li a:hover {
+nav aside ul li a:hover,
+nav aside ul li button:hover {
   color: var(--primaryColorText);
 }
 
@@ -263,7 +266,8 @@ nav aside ul:last-child {
   margin: auto 0 2.5rem;
 }
 
-nav aside ul:last-child a {
+nav aside ul:last-child a,
+nav aside ul:last-child button {
   font-family: var(--primaryFont);
   font-size: 1.3rem;
   font-weight: 600;
@@ -271,6 +275,7 @@ nav aside ul:last-child a {
   padding-top: 0;
   padding-bottom: 0;
   min-height: 0;
+  text-align: left;
 }
 
 nav aside ul:last-child span {
@@ -287,16 +292,15 @@ nav aside ul:last-child span {
 /**************/
 
 section,
-body > header nav > div,
 body > footer {
   padding: 0 var(--sidePadding);
 }
 
-main header {
+main aside {
   position: relative;
 }
 
-main header img {
+main aside img {
   display: block;
   width: 100%;
   max-width: 100%;
@@ -304,7 +308,7 @@ main header img {
   object-fit: cover;
 }
 
-main header button {
+main aside button {
   background-color: rgba(0, 0, 0, 0.5);
   height: 2.8rem;
   width: 2.8rem;
@@ -317,6 +321,6 @@ main header button {
   color: hsla(0, 0%, 100%, 0.8);
 }
 
-main header button:hover {
+main aside button:hover {
   opacity: 0.65;
 }
