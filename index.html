@@ -13,34 +13,40 @@
       <nav>
         <section>
           <div>
-            <button>&#116</button>
-            <a href=""></a>
+            <button 
+            aria-label="Open sidebar for more navigation options" 
+            aria-expanded="true" 
+            aria-controls="sidebar">&#116</button>
+            <a href="" aria-label="To the homepage"></a>
           </div>
           <ul>
             <li>
-              <a href="">n</a>
+              <a href="./index.html" aria-label="To homepage">n</a>
             </li>
             <li>
-              <a href="">&#7960</a>
+              <a href="" aria-label="Friends overview">&#7960</a>
             </li>
             <li>
-              <a href="">y</a>
+              <a href="" aria-label="Start playing chess">y</a>
             </li>
             <li>
-              <a href="">q</a>
+              <a href="" aria-label="Your messages">q</a>
             </li>
             <li>
-              <a href="">&#183</a>
+              <a href="" aria-label="Settings">&#183</a>
             </li>
           </ul>
         </section>
-        <aside class="menuOpen">
+        <section id="sidebar" class="menuOpen">
           <ul>
             <li>
-              <button>&#66</button>
+              <button 
+              aria-label="Close the sidebar" 
+              aria-expanded="true" 
+              aria-controls="sidebar">&#66</button>
             </li>
             <li>
-              <a href="">Home</a>
+              <a href="./index.html">Home</a>
             </li>
             <li>
               <a href="">Play</a>
@@ -68,29 +74,33 @@
             </li>
             <li>
               <form action="">
-                <input autocomplete="off" maxlength="32" placeholder="Search" type="text">
+                <input 
+                autocomplete="off" 
+                maxlength="32" 
+                placeholder="Search" 
+                type="text">
               </form>
             </li>                                   
           </ul>
           <ul>
               <li>
-                <button>
-                <span>&#7997</span>Light UI
+                <button aria-label="Switch between light and dark mode">
+                  <span>&#7997</span>Light UI
                 </button> 
               </li>
               <li>
-                <a href=""><span>&#183</span>Settings</a> 
+                <a href="" aria-label="Settings"><span>&#183</span>Settings</a> 
               </li>
               <li>
-                <a href=""><span>&#40</span>Help</a> 
+                <a href="" aria-label="Get help"><span>&#40</span>Help</a> 
               </li>                            
           </ul>
-        </aside>
+        </section>
       </nav>
     </header>
   <main>
 		<aside>
-			<button type="button">&#66</button>
+			<button type="button" aria-label="Close ad">&#66</button>
 			<a href="">
 				<img src="./images/ad_img.png" alt="advertisement">
 			</a>
@@ -98,6 +108,6 @@
 		<section>HIER KOMT CONTENT</section>
 	</main>
   <footer>FOOTER</footer>
-    <script defer src="scripts/script.js"></script>
+  <script defer src="scripts/script.js"></script>
   </body>
 </html>
