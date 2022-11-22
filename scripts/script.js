@@ -6,7 +6,7 @@ console.log("hi");
 const burgerIcon = document.querySelector("nav section:first-of-type div button");
 const closeIcon = document.querySelector("nav section:last-of-type ul li:first-child button");
 const sideMenu = document.querySelector("nav section:last-of-type");
-let open = true;
+let open = false;
 
 function burgerMenu() {
   if (open) {
@@ -27,12 +27,11 @@ function burgerMenu() {
 burgerIcon.addEventListener("click", burgerMenu);
 closeIcon.addEventListener("click", burgerMenu);
 
-
 //Ad removal
 
-const adverts = document.querySelectorAll("main > aside")
+const adverts = document.querySelectorAll("main > aside");
 
-adverts.forEach(advert => {
+adverts.forEach((advert) => {
   const button = advert.querySelector("button");
   button.addEventListener("click", () => {
     advert.classList.add("removeAd");

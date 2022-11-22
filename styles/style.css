@@ -73,6 +73,15 @@ body {
   touch-action: manipulation;
 }
 
+span {
+  font-family: Chess New;
+  font-size: 3.2rem;
+  font-weight: 400;
+  line-height: 1;
+  width: 3.2rem;
+  margin: 0 0.2rem 0 0.5rem;
+}
+
 nav > section:first-of-type {
   display: flex;
   justify-content: space-between;
@@ -139,7 +148,7 @@ nav section:last-of-type {
   top: 0;
   opacity: 1;
   z-index: 1;
-  transition: .3s;
+  transition: 0.3s;
   transform: translateX(-100%);
   overflow: hidden;
   display: flex;
@@ -300,6 +309,8 @@ header nav section:first-of-type,
 main > section,
 body > footer {
   padding: 0 var(--sidePadding);
+  scrollbar-color: rgba(0, 0, 0, 0.45) transparent;
+  scrollbar-width: thin;
 }
 
 main aside {
@@ -329,4 +340,19 @@ main aside button {
 
 main aside button:hover {
   opacity: 0.65;
+}
+
+main > section:first-of-type {
+  display: flex;
+  overflow: auto;
+  margin: 2rem 0;
+  gap: 2rem;
+}
+
+main > section:first-of-type section {
+  min-width: 20rem;
+}
+
+main > section:first-of-type section {
+  min-width: 20rem;
 }
