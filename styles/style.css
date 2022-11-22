@@ -17,6 +17,10 @@
   src: url(./chessglyph-new.11d668b6.woff2);
 }
 
+aside.removeAd {
+  display: none;
+}
+
 /**************/
 /* CSS REMEDY */
 /**************/
@@ -128,13 +132,14 @@ nav section:first-of-type div a:nth-child(2)::before {
 }
 
 nav section:last-of-type {
-  position: absolute;
+  position: fixed;
   height: 100%;
   width: 14.6rem;
   background-color: #262421;
   top: 0;
   opacity: 1;
   z-index: 1;
+  transition: .3s;
   transform: translateX(-100%);
   overflow: hidden;
   display: flex;
@@ -292,7 +297,7 @@ nav section:last-of-type ul:last-child span {
 /**************/
 
 header nav section:first-of-type,
-main section,
+main > section,
 body > footer {
   padding: 0 var(--sidePadding);
 }

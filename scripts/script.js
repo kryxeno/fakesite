@@ -1,20 +1,22 @@
 // JavaScript Document
 console.log("hi");
 
+// Sidebar menu
+
 const burgerIcon = document.querySelector("nav section:first-of-type div button");
 const closeIcon = document.querySelector("nav section:last-of-type ul li:first-child button");
-const menu = document.querySelector("nav section:last-of-type");
+const sideMenu = document.querySelector("nav section:last-of-type");
 let open = true;
 
 function burgerMenu() {
   if (open) {
-    menu.classList.remove("menuOpen");
+    sideMenu.classList.remove("menuOpen");
     open = false;
     burgerIcon.setAttribute("aria-expanded", open);
     closeIcon.setAttribute("aria-expanded", open);
     console.log("Sidebar extended = " + open);
   } else {
-    menu.classList.add("menuOpen");
+    sideMenu.classList.add("menuOpen");
     open = true;
     burgerIcon.setAttribute("aria-expanded", open);
     closeIcon.setAttribute("aria-expanded", open);
@@ -24,3 +26,15 @@ function burgerMenu() {
 
 burgerIcon.addEventListener("click", burgerMenu);
 closeIcon.addEventListener("click", burgerMenu);
+
+
+//Ad removal
+
+const adverts = document.querySelectorAll("main > aside")
+
+adverts.forEach(advert => {
+  const button = advert.querySelector("button");
+  button.addEventListener("click", () => {
+    advert.classList.add("removeAd");
+  });
+});
