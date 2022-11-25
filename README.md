@@ -145,11 +145,22 @@ hier dit ging goed & dit was lastig (neem ook screenshots op van delen van je we
 
 samen met je groepje opstellen
 
-| student 1      | student 2          | student 3    | student 4        |
-| -------------- | ------------------ | ------------ | ---------------- |
-| dit bespreken  | en dit             | en ik dit    | en dan ik dat    |
-| en dat ook nog | dit als er tijd is | nog een punt | dit wil ik zeker |
-| ...            | ...                | ...          | ...              |
+Julia
+
+1. Hoe kan ik gebruikers door een carousel laten slippen d.m.v. Buttons (of in iedergeval met behulp van een klikbaar element)?
+2. Hoe kan ik m’n hamburger menu full-screen tonen? (Via JS een class toevoegen of anders?)
+3. Met 3 css style sheets; kan ik de variabele kleuren in 1 sheet zetten en die dan in de andere twee sheets gebruiken?
+
+Tim
+
+4. Hoe kan ik een functioneel schaakbord maken.
+5. Hoe zorg ik ervoor dat mijn elements. Responsive blijven.
+6. Hoe geef ik de gebruiker een lightmode optie.
+
+Kim
+
+1. Ik wilde sowieso weten hoe de animatie bij een hamburger menu werkt.
+2. Hoe je een hamburger menu codeert.
 
 ### Verslag van meeting
 
