@@ -166,10 +166,7 @@ Kim
 
 hier na afloop snel de uitkomsten van de meeting vastleggen
 
-- punt 1
-- punt 2
-- nog een punt
-- ...
+- Alles is uitgelegd. Zie de codepen voor uitwerking.
 
 </details>
 
