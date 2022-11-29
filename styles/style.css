@@ -439,7 +439,8 @@ main > section:first-child > svg text:nth-child(even) {
   fill: #eeeed2;
 }
 
-.box {
+.box,
+.piece {
   position: absolute;
   bottom: 0;
   left: 0%;
