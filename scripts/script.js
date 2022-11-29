@@ -81,6 +81,20 @@ darkButton.addEventListener("click", () => {
   setDarkModeLocalStorage(darkModeState);
 });
 
+const chessPieces = document.querySelectorAll("main > section:first-child li");
+
+chessPieces.forEach((piece) => {
+  piece.addEventListener("dragstart", (e) => {
+    // piece.style.cursor = "move";
+    setTimeout(() => {
+      piece.classList.add("visually-hidden");
+    });
+  });
+  piece.addEventListener("dragend", () => {
+    piece.classList.remove("visually-hidden");
+  });
+});
+
 // init() {
 //             createChessboard({
 //               id: L,

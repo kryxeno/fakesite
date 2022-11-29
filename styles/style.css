@@ -44,6 +44,7 @@ aside.removeAd {
   display: none;
 }
 
+/* a11y hidden class  */
 .visually-hidden {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
@@ -416,6 +417,7 @@ main > section:first-child {
   background-size: cover;
   position: relative;
   border-radius: 0.5rem;
+  overflow: hidden;
 }
 
 main > section:first-child > svg {
@@ -437,8 +439,7 @@ main > section:first-child > svg text:nth-child(even) {
   fill: #eeeed2;
 }
 
-main > section:first-child ul li,
-main > section > div {
+.box {
   position: absolute;
   bottom: 0;
   left: 0%;
@@ -466,7 +467,7 @@ main > section > div:nth-of-type(3) {
 }
 
 main > section:first-child ul li:hover {
-  opacity: 0.5;
+  /* opacity: 0.5; */
   cursor: grab;
 }
 main > section:first-child ul li:active {
@@ -474,56 +475,50 @@ main > section:first-child ul li:active {
   cursor: grabbing;
 }
 
-main > section:first-child ul:first-of-type li:nth-child(1),
-main > section:first-child ul:first-of-type li:nth-child(8) {
+.br {
   background-image: url("../images/br.png");
 }
 
-main > section:first-child ul:first-of-type li:nth-child(2),
-main > section:first-child ul:first-of-type li:nth-child(7) {
+.bn {
   background-image: url("../images/bn.png");
 }
 
-main > section:first-child ul:first-of-type li:nth-child(3),
-main > section:first-child ul:first-of-type li:nth-child(6) {
+.bb {
   background-image: url("../images/bb.png");
 }
 
-main > section:first-child ul:first-of-type li:nth-child(4) {
+.bk {
   background-image: url("../images/bk.png");
 }
 
-main > section:first-child ul:first-of-type li:nth-child(5) {
+.bq {
   background-image: url("../images/bq.png");
 }
 
-main > section:first-child ul:first-of-type li:nth-child(n + 9):nth-child(-n + 16) {
+.bp {
   background-image: url("../images/bp.png");
 }
 
-main > section:first-child ul:nth-of-type(2) li:nth-child(1),
-main > section:first-child ul:nth-of-type(2) li:nth-child(8) {
+.wr {
   background-image: url("../images/wr.png");
 }
 
-main > section:first-child ul:nth-of-type(2) li:nth-child(2),
-main > section:first-child ul:nth-of-type(2) li:nth-child(7) {
+.wn {
   background-image: url("../images/wn.png");
 }
 
-main > section:first-child ul:nth-of-type(2) li:nth-child(3),
-main > section:first-child ul:nth-of-type(2) li:nth-child(6) {
+.wb {
   background-image: url("../images/wb.png");
 }
 
-main > section:first-child ul:nth-of-type(2) li:nth-child(4) {
+.wk {
   background-image: url("../images/wk.png");
 }
 
-main > section:first-child ul:nth-of-type(2) li:nth-child(5) {
+.wq {
   background-image: url("../images/wq.png");
 }
 
-main > section:first-child ul:nth-of-type(2) li:nth-child(n + 9):nth-child(-n + 16) {
+.wp {
   background-image: url("../images/wp.png");
 }
