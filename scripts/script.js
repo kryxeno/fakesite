@@ -81,6 +81,8 @@ darkButton.addEventListener("click", () => {
   setDarkModeLocalStorage(darkModeState);
 });
 
+// https://javascript.info/mouse-drag-and-drop
+
 function roundDownToNearest1(num) {
   if (num >= 0) {
     return Math.floor(num / 100) + 1;
@@ -90,17 +92,36 @@ function roundDownToNearest1(num) {
 }
 
 const chessPieces = document.querySelectorAll(".piece");
+const hover = document.querySelector(".hover");
+const selectedPiece = document.querySelector(".active");
 const board = document.querySelector("main > section:first-child");
 
 chessPieces.forEach((piece) => {
   const bounds = board.getBoundingClientRect();
-  var lastPosX = 0;
-  var lastPosY = 0;
+  let lastPosX = 0;
+  let lastPosY = 0;
+  let ogPosX = 0;
+  let ogPosY = 0;
+  let currentDroppable = null;
+  let elemBelow = null;
+  // let selectedPieceActive = false;
 
   piece.onmousedown = function (event) {
     // moving piece to mouse
     moveAt(event.clientX, event.clientY);
     piece.style.zIndex = 1000;
+    ogPosX = ((event.clientX - bounds.left) / 6) * 8;
+    ogPosY = -800 + ((event.clientY - bounds.top) / 6) * 8;
+    console.log("Original Position = " + roundDownToNearest1(ogPosX) + "" + roundDownToNearest1(ogPosY));
+    selectedPiece.classList.remove("visually-hidden");
+
+    for (let i = selectedPiece.classList.length - 1; i >= 0; i--) {
+      const className = selectedPiece.classList[i];
+      if (className.startsWith("square")) {
+        selectedPiece.classList.remove(className);
+      }
+      selectedPiece.classList.add("square-" + roundDownToNearest1(ogPosX) + "" + roundDownToNearest1(ogPosY));
+    }
     // moves the piece at (clientX, clientY) coordinates relative to chessboard
     // taking initial shifts into account
     function moveAt(clientX, clientY) {
@@ -109,12 +130,51 @@ chessPieces.forEach((piece) => {
       piece.style.transform = "translate(" + X + "%," + Y + "%)";
       lastPosX = ((clientX - bounds.left) / 6) * 8;
       lastPosY = -800 + ((clientY - bounds.top) / 6) * 8;
-      console.log(lastPosX);
-      console.log(lastPosY);
+
+      for (let i = hover.classList.length - 1; i >= 0; i--) {
+        const className = hover.classList[i];
+        if (className.startsWith("square")) {
+          hover.classList.remove(className);
+        }
+        hover.classList.add("square-" + roundDownToNearest1(lastPosX) + "" + roundDownToNearest1(lastPosY));
+        hover.classList.remove("visually-hidden");
+      }
     }
 
     function onMouseMove(event) {
       moveAt(event.clientX, event.clientY);
+      piece.hidden = true;
+      hover.hidden = true;
+      selectedPiece.hidden = true;
+      elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+      // console.log(elemBelow);
+      piece.hidden = false;
+      hover.hidden = false;
+      selectedPiece.hidden = false;
+
+      if (!elemBelow) return;
+
+      let droppableBelow = elemBelow.closest(".piece");
+      if (currentDroppable != droppableBelow) {
+        if (currentDroppable) {
+          // null when we were not over a droppable before this event
+          leaveDroppable(currentDroppable);
+        }
+        currentDroppable = droppableBelow;
+        if (currentDroppable) {
+          // null if we're not coming over a droppable now
+          // (maybe just left the droppable)
+          enterDroppable(currentDroppable);
+        }
+      }
+    }
+
+    function enterDroppable(elem) {
+      elem.classList.add("targeted");
+    }
+
+    function leaveDroppable(elem) {
+      elem.classList.remove("targeted");
     }
 
     // move the piece on mousemove
@@ -124,11 +184,17 @@ chessPieces.forEach((piece) => {
     piece.onmouseup = function () {
       board.removeEventListener("mousemove", onMouseMove);
       piece.onmouseup = null;
+      // hide the hover
+      hover.classList.add("visually-hidden");
       piece.style.zIndex = 0;
       piece.style.transform = null;
-      console.log(roundDownToNearest1(lastPosX));
-      console.log(roundDownToNearest1(lastPosY));
-      if (1 == 1) {
+      console.log("New Position =  " + roundDownToNearest1(lastPosX) + "" + roundDownToNearest1(lastPosY));
+
+      if (roundDownToNearest1(lastPosX) != roundDownToNearest1(ogPosX) && roundDownToNearest1(lastPosY) != roundDownToNearest1(ogPosY)) {
+        // add target square active
+      }
+      if ("enemy") {
+        // als onder de muis een enemy square zit en de move legaal is
         // remove current position class
         for (let i = piece.classList.length - 1; i >= 0; i--) {
           const className = piece.classList[i];
@@ -138,6 +204,24 @@ chessPieces.forEach((piece) => {
         }
         // add new position class
         piece.classList.add("square-" + roundDownToNearest1(lastPosX) + "" + roundDownToNearest1(lastPosY));
+        if (elemBelow.classList.contains("piece")) {
+          console.log("Removed Piece = ");
+          console.log(elemBelow);
+          elemBelow.classList.add("visually-hidden");
+        }
+      } else if ("legal") {
+        // als de ruimte open is en er geen enemy square / friendly square in zit,
+        // maar de move wel legaal is
+      } else if ("illegal") {
+        // als de ruimte niet open is en de move niet legaal is
+        for (let i = piece.classList.length - 1; i >= 0; i--) {
+          const className = piece.classList[i];
+          if (className.startsWith("square")) {
+            piece.classList.remove(className);
+          }
+        }
+        // add new position class
+        piece.classList.add("square-" + roundDownToNearest1(ogPosX) + "" + roundDownToNearest1(ogPosY));
       }
     };
   };
