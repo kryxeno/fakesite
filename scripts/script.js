@@ -94,6 +94,7 @@ function roundDownToNearest1(num) {
 const chessPieces = document.querySelectorAll(".piece");
 const hover = document.querySelector(".hover");
 const selectedPiece = document.querySelector(".active");
+const selectedPiece2 = document.querySelector(".active2");
 const board = document.querySelector("main > section:first-child");
 
 chessPieces.forEach((piece) => {
@@ -104,16 +105,16 @@ chessPieces.forEach((piece) => {
   let ogPosY = 0;
   let currentDroppable = null;
   let elemBelow = null;
-  // let selectedPieceActive = false;
 
   piece.onmousedown = function (event) {
     // moving piece to mouse
     moveAt(event.clientX, event.clientY);
     piece.style.zIndex = 1000;
-    ogPosX = ((event.clientX - bounds.left) / 6) * 8;
-    ogPosY = -800 + ((event.clientY - bounds.top) / 6) * 8;
+    ogPosX = ((event.clientX - bounds.left) / ((bounds.right - bounds.left) / 100)) * 8;
+    ogPosY = -800 + ((event.clientY - bounds.top) / ((bounds.bottom - bounds.top) / 100)) * 8;
     console.log("Original Position = " + roundDownToNearest1(ogPosX) + "" + roundDownToNearest1(ogPosY));
     selectedPiece.classList.remove("visually-hidden");
+    selectedPiece2.classList.add("visually-hidden");
 
     for (let i = selectedPiece.classList.length - 1; i >= 0; i--) {
       const className = selectedPiece.classList[i];
@@ -125,11 +126,11 @@ chessPieces.forEach((piece) => {
     // moves the piece at (clientX, clientY) coordinates relative to chessboard
     // taking initial shifts into account
     function moveAt(clientX, clientY) {
-      const X = ((clientX - bounds.left - piece.offsetWidth / 2) / 6) * 8;
-      const Y = -800 + ((clientY - bounds.top + piece.offsetWidth / 2) / 6) * 8;
+      const X = ((clientX - bounds.left - piece.offsetWidth / 2) / ((bounds.right - bounds.left) / 100)) * 8;
+      const Y = -800 + ((clientY - bounds.top + piece.offsetWidth / 2) / ((bounds.bottom - bounds.top) / 100)) * 8;
       piece.style.transform = "translate(" + X + "%," + Y + "%)";
-      lastPosX = ((clientX - bounds.left) / 6) * 8;
-      lastPosY = -800 + ((clientY - bounds.top) / 6) * 8;
+      lastPosX = ((clientX - bounds.left) / ((bounds.right - bounds.left) / 100)) * 8;
+      lastPosY = -800 + ((clientY - bounds.top) / ((bounds.bottom - bounds.top) / 100)) * 8;
 
       for (let i = hover.classList.length - 1; i >= 0; i--) {
         const className = hover.classList[i];
@@ -190,8 +191,17 @@ chessPieces.forEach((piece) => {
       piece.style.transform = null;
       console.log("New Position =  " + roundDownToNearest1(lastPosX) + "" + roundDownToNearest1(lastPosY));
 
-      if (roundDownToNearest1(lastPosX) != roundDownToNearest1(ogPosX) && roundDownToNearest1(lastPosY) != roundDownToNearest1(ogPosY)) {
-        // add target square active
+      if (roundDownToNearest1(lastPosX) == roundDownToNearest1(ogPosX) && roundDownToNearest1(lastPosY) == roundDownToNearest1(ogPosY)) {
+      } else {
+        selectedPiece2.classList.remove("visually-hidden");
+        for (let i = selectedPiece2.classList.length - 1; i >= 0; i--) {
+          const className = selectedPiece2.classList[i];
+          if (className.startsWith("square")) {
+            selectedPiece2.classList.remove(className);
+          }
+        }
+        // add new position class
+        selectedPiece2.classList.add("square-" + roundDownToNearest1(lastPosX) + "" + roundDownToNearest1(lastPosY));
       }
       if ("enemy") {
         // als onder de muis een enemy square zit en de move legaal is
@@ -204,7 +214,9 @@ chessPieces.forEach((piece) => {
         }
         // add new position class
         piece.classList.add("square-" + roundDownToNearest1(lastPosX) + "" + roundDownToNearest1(lastPosY));
-        if (elemBelow.classList.contains("piece")) {
+        if (elemBelow == null) {
+          return false;
+        } else if (elemBelow.classList.contains("piece")) {
           console.log("Removed Piece = ");
           console.log(elemBelow);
           elemBelow.classList.add("visually-hidden");
