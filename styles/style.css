@@ -408,7 +408,6 @@ main > section:first-of-type section {
 /**************/
 
 main > section:first-child {
-  /* min-width: 100%; */
   max-width: 60rem;
   aspect-ratio: 1/1;
   margin: 0 auto;
@@ -478,9 +477,9 @@ main > section:first-child > svg text:nth-child(even) {
 }
 
 main > section:first-child ul li:hover {
-  /* opacity: 0.5; */
   cursor: grab;
 }
+
 main > section:first-child ul li:active {
   opacity: 1;
   cursor: grabbing;
@@ -538,7 +537,6 @@ footer ul {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  /* gap: 0.25rem; */
   margin-top: 5rem;
   color: var(--tertiary-color-text);
 }
