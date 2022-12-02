@@ -533,3 +533,30 @@ main > section:first-child ul li:active {
 .wp {
   background-image: url("../images/wp.png");
 }
+
+footer ul {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  /* gap: 0.25rem; */
+  margin-top: 5rem;
+  color: var(--tertiary-color-text);
+}
+
+footer ul li a {
+  padding: 0.5rem;
+  color: inherit;
+}
+
+footer ul li:hover a {
+  color: var(--primary-color-text);
+}
+
+footer ul li:not(:first-of-type) a::before {
+  content: "|";
+  margin-right: 0.7rem;
+}
+
+footer ul li:hover a::before {
+  color: var(--tertiary-color-text);
+}
