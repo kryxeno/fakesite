@@ -98,7 +98,6 @@ const selectedPiece2 = document.querySelector(".active2");
 const board = document.querySelector("main > section:first-child");
 
 chessPieces.forEach((piece) => {
-  const bounds = board.getBoundingClientRect();
   let lastPosX = 0;
   let lastPosY = 0;
   let ogPosX = 0;
@@ -107,6 +106,7 @@ chessPieces.forEach((piece) => {
   let elemBelow = null;
 
   piece.onmousedown = function (event) {
+    const bounds = board.getBoundingClientRect();
     // moving piece to mouse
     moveAt(event.clientX, event.clientY);
     piece.style.zIndex = 1000;
