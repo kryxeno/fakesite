@@ -91,6 +91,40 @@ function roundDownToNearest1(num) {
   }
 }
 
+function colorValidation(e) {
+  for (let i = e.classList.length - 1; i >= 0; i--) {
+    const className = e.classList[i];
+    if (className.startsWith("b")) {
+      return true;
+    } else if (className.startsWith("w")) {
+      return false;
+    }
+  }
+}
+
+function hintValidation(e) {
+  const hintBounds = e.getBoundingClientRect();
+  let hintPosX = hintBounds.right - (hintBounds.right - hintBounds.left) / 2;
+  let hintPosY = hintBounds.bottom - (hintBounds.bottom - hintBounds.top) / 2;
+  let droppableBelow = document.elementFromPoint(hintPosX, hintPosY);
+
+  // different restults depending on color
+  if (droppableBelow != null) {
+    if (droppableBelow.classList.contains("piece")) {
+      return colorValidation(droppableBelow);
+    }
+  }
+}
+
+function squareRemove(e) {
+  for (let i = e.classList.length - 1; i >= 0; i--) {
+    const className = e.classList[i];
+    if (className.startsWith("square")) {
+      e.classList.remove(className);
+    }
+  }
+}
+
 const chessPieces = document.querySelectorAll(".piece");
 const hover = document.querySelector(".hover");
 const selectedPiece = document.querySelector(".active");
@@ -195,23 +229,71 @@ chessPieces.forEach((piece) => {
       }
 
       // calculates moves
+      // ROOK MOVES
       if (pieceType == "rook") {
         let X = roundDownToNearest1(ogPosX);
         let Y = roundDownToNearest1(ogPosY);
         for (let i = 1; i < 9; i++) {
-          if (i == Y) {
-            for (let j = 1; j < 9; j++) {
-              if (j == X) continue;
-              const hint = document.createElement("div");
-              board.appendChild(hint);
-              hint.classList.add("box", "moves", "square-" + j + "" + Y);
+          if (Y + i < 9) {
+            const hint = document.createElement("div");
+            board.appendChild(hint);
+            hint.classList.add("box", "moves", "square-" + X + "" + (Y + i));
+            let belowPieceColor = hintValidation(hint);
+            if (belowPieceColor == pieceColor) {
+              hint.remove();
+              break;
+            } else if (belowPieceColor == !pieceColor) {
+              hint.classList.add("targeted");
+              break;
             }
           }
-          if (i == Y) continue;
-          const hint = document.createElement("div");
-          board.appendChild(hint);
-          hint.classList.add("box", "moves", "square-" + X + "" + i);
         }
+        for (let i = 1; i < 9; i++) {
+          if (0 < Y - i) {
+            const hint = document.createElement("div");
+            board.appendChild(hint);
+            hint.classList.add("box", "moves", "square-" + X + "" + (Y - i));
+            let belowPieceColor = hintValidation(hint);
+            if (belowPieceColor == pieceColor) {
+              hint.remove();
+              break;
+            } else if (belowPieceColor == !pieceColor) {
+              hint.classList.add("targeted");
+              break;
+            }
+          }
+        }
+        for (let j = 1; j < 9; j++) {
+          if (X + j < 9) {
+            const hint = document.createElement("div");
+            board.appendChild(hint);
+            hint.classList.add("box", "moves", "square-" + (X + j) + "" + Y);
+            let belowPieceColor = hintValidation(hint);
+            if (belowPieceColor == pieceColor) {
+              hint.remove();
+              break;
+            } else if (belowPieceColor == !pieceColor) {
+              hint.classList.add("targeted");
+              break;
+            }
+          }
+        }
+        for (let j = 1; j < 9; j++) {
+          if (0 < X - j) {
+            const hint = document.createElement("div");
+            board.appendChild(hint);
+            hint.classList.add("box", "moves", "square-" + (X - j) + "" + Y);
+            let belowPieceColor = hintValidation(hint);
+            if (belowPieceColor == pieceColor) {
+              hint.remove();
+              break;
+            } else if (belowPieceColor == !pieceColor) {
+              hint.classList.add("targeted");
+              break;
+            }
+          }
+        }
+        // KNIGHT MOVES
       } else if (pieceType == "knight") {
         let X = roundDownToNearest1(ogPosX);
         let Y = roundDownToNearest1(ogPosY);
@@ -239,33 +321,80 @@ chessPieces.forEach((piece) => {
           }
           j--;
         }
+        hints = document.querySelectorAll(".moves");
+        hints.forEach((hint) => {
+          let belowPieceColor = hintValidation(hint);
+          if (belowPieceColor == pieceColor) {
+            hint.remove();
+          } else if (belowPieceColor == !pieceColor) {
+            hint.classList.add("targeted");
+          }
+        });
+        // BISHOP MOVES
       } else if (pieceType == "bishop") {
         let X = roundDownToNearest1(ogPosX);
         let Y = roundDownToNearest1(ogPosY);
         for (let i = 1; i < 9; i++) {
-          for (let j = 1; j < 9; j++) {
-            if (i == X && j == Y) continue;
-            if (j - i == Y - X) {
-              if (0 < i && i < 9 && 0 < j && j < 9) {
-                const hint = document.createElement("div");
-                board.appendChild(hint);
-                hint.classList.add("box", "moves", "square-" + i + "" + j);
-              }
+          if (0 < X + i && X + i < 9 && 0 < Y + i && Y + i < 9) {
+            const hint = document.createElement("div");
+            board.appendChild(hint);
+            hint.classList.add("box", "moves", "square-" + (X + i) + "" + (Y + i));
+            let belowPieceColor = hintValidation(hint);
+            if (belowPieceColor == pieceColor) {
+              hint.remove();
+              break;
+            } else if (belowPieceColor == !pieceColor) {
+              hint.classList.add("targeted");
+              break;
             }
           }
         }
         for (let i = 1; i < 9; i++) {
-          for (let j = 1; j < 9; j++) {
-            if (i == X && j == Y) continue;
-            if (j + i == Y + X) {
-              if (0 < i && i < 9 && 0 < j && j < 9) {
-                const hint = document.createElement("div");
-                board.appendChild(hint);
-                hint.classList.add("box", "moves", "square-" + i + "" + j);
-              }
+          if (0 < X - i && X - i < 9 && 0 < Y - i && Y - i < 9) {
+            const hint = document.createElement("div");
+            board.appendChild(hint);
+            hint.classList.add("box", "moves", "square-" + (X - i) + "" + (Y - i));
+            let belowPieceColor = hintValidation(hint);
+            if (belowPieceColor == pieceColor) {
+              hint.remove();
+              break;
+            } else if (belowPieceColor == !pieceColor) {
+              hint.classList.add("targeted");
+              break;
             }
           }
         }
+        for (let i = 1; i < 9; i++) {
+          if (0 < X + i && X + i < 9 && 0 < Y - i && Y - i < 9) {
+            const hint = document.createElement("div");
+            board.appendChild(hint);
+            hint.classList.add("box", "moves", "square-" + (X + i) + "" + (Y - i));
+            let belowPieceColor = hintValidation(hint);
+            if (belowPieceColor == pieceColor) {
+              hint.remove();
+              break;
+            } else if (belowPieceColor == !pieceColor) {
+              hint.classList.add("targeted");
+              break;
+            }
+          }
+        }
+        for (let i = 1; i < 9; i++) {
+          if (0 < X - i && X - i < 9 && 0 < Y + i && Y + i < 9) {
+            const hint = document.createElement("div");
+            board.appendChild(hint);
+            hint.classList.add("box", "moves", "square-" + (X - i) + "" + (Y + i));
+            let belowPieceColor = hintValidation(hint);
+            if (belowPieceColor == pieceColor) {
+              hint.remove();
+              break;
+            } else if (belowPieceColor == !pieceColor) {
+              hint.classList.add("targeted");
+              break;
+            }
+          }
+        }
+        // KING MOVES
       } else if (pieceType == "king") {
         let X = roundDownToNearest1(ogPosX);
         let Y = roundDownToNearest1(ogPosY);
@@ -276,129 +405,199 @@ chessPieces.forEach((piece) => {
               const hint = document.createElement("div");
               board.appendChild(hint);
               hint.classList.add("box", "moves", "square-" + i + "" + j);
+              let belowPieceColor = hintValidation(hint);
+              if (belowPieceColor == pieceColor) {
+                hint.remove();
+              } else if (belowPieceColor == !pieceColor) {
+                hint.classList.add("targeted");
+              }
             }
           }
         }
+        // QUEEN MOVES
       } else if (pieceType == "queen") {
         let X = roundDownToNearest1(ogPosX);
         let Y = roundDownToNearest1(ogPosY);
         for (let i = 1; i < 9; i++) {
-          for (let j = 1; j < 9; j++) {
-            if (i == X && j == Y) continue;
-            if (j - i == Y - X) {
-              if (0 < i && i < 9 && 0 < j && j < 9) {
-                const hint = document.createElement("div");
-                board.appendChild(hint);
-                hint.classList.add("box", "moves", "square-" + i + "" + j);
-              }
+          if (0 < X + i && X + i < 9 && 0 < Y + i && Y + i < 9) {
+            const hint = document.createElement("div");
+            board.appendChild(hint);
+            hint.classList.add("box", "moves", "square-" + (X + i) + "" + (Y + i));
+            let belowPieceColor = hintValidation(hint);
+            if (belowPieceColor == pieceColor) {
+              hint.remove();
+              break;
+            } else if (belowPieceColor == !pieceColor) {
+              hint.classList.add("targeted");
+              break;
             }
           }
         }
         for (let i = 1; i < 9; i++) {
-          for (let j = 1; j < 9; j++) {
-            if (i == X && j == Y) continue;
-            if (j + i == Y + X) {
-              if (0 < i && i < 9 && 0 < j && j < 9) {
-                const hint = document.createElement("div");
-                board.appendChild(hint);
-                hint.classList.add("box", "moves", "square-" + i + "" + j);
-              }
+          if (0 < X - i && X - i < 9 && 0 < Y - i && Y - i < 9) {
+            const hint = document.createElement("div");
+            board.appendChild(hint);
+            hint.classList.add("box", "moves", "square-" + (X - i) + "" + (Y - i));
+            let belowPieceColor = hintValidation(hint);
+            if (belowPieceColor == pieceColor) {
+              hint.remove();
+              break;
+            } else if (belowPieceColor == !pieceColor) {
+              hint.classList.add("targeted");
+              break;
             }
           }
         }
         for (let i = 1; i < 9; i++) {
-          if (i == Y) {
-            for (let j = 1; j < 9; j++) {
-              if (j == X) continue;
-              const hint = document.createElement("div");
-              board.appendChild(hint);
-              hint.classList.add("box", "moves", "square-" + j + "" + Y);
+          if (0 < X + i && X + i < 9 && 0 < Y - i && Y - i < 9) {
+            const hint = document.createElement("div");
+            board.appendChild(hint);
+            hint.classList.add("box", "moves", "square-" + (X + i) + "" + (Y - i));
+            let belowPieceColor = hintValidation(hint);
+            if (belowPieceColor == pieceColor) {
+              hint.remove();
+              break;
+            } else if (belowPieceColor == !pieceColor) {
+              hint.classList.add("targeted");
+              break;
             }
           }
-          if (i == Y) continue;
-          const hint = document.createElement("div");
-          board.appendChild(hint);
-          hint.classList.add("box", "moves", "square-" + X + "" + i);
         }
+        for (let i = 1; i < 9; i++) {
+          if (0 < X - i && X - i < 9 && 0 < Y + i && Y + i < 9) {
+            const hint = document.createElement("div");
+            board.appendChild(hint);
+            hint.classList.add("box", "moves", "square-" + (X - i) + "" + (Y + i));
+            let belowPieceColor = hintValidation(hint);
+            if (belowPieceColor == pieceColor) {
+              hint.remove();
+              break;
+            } else if (belowPieceColor == !pieceColor) {
+              hint.classList.add("targeted");
+              break;
+            }
+          }
+        }
+        for (let i = 1; i < 9; i++) {
+          if (Y + i < 9) {
+            const hint = document.createElement("div");
+            board.appendChild(hint);
+            hint.classList.add("box", "moves", "square-" + X + "" + (Y + i));
+            let belowPieceColor = hintValidation(hint);
+            if (belowPieceColor == pieceColor) {
+              hint.remove();
+              break;
+            } else if (belowPieceColor == !pieceColor) {
+              hint.classList.add("targeted");
+              break;
+            }
+          }
+        }
+        for (let i = 1; i < 9; i++) {
+          if (0 < Y - i) {
+            const hint = document.createElement("div");
+            board.appendChild(hint);
+            hint.classList.add("box", "moves", "square-" + X + "" + (Y - i));
+            let belowPieceColor = hintValidation(hint);
+            if (belowPieceColor == pieceColor) {
+              hint.remove();
+              break;
+            } else if (belowPieceColor == !pieceColor) {
+              hint.classList.add("targeted");
+              break;
+            }
+          }
+        }
+        for (let j = 1; j < 9; j++) {
+          if (X + j < 9) {
+            const hint = document.createElement("div");
+            board.appendChild(hint);
+            hint.classList.add("box", "moves", "square-" + (X + j) + "" + Y);
+            let belowPieceColor = hintValidation(hint);
+            if (belowPieceColor == pieceColor) {
+              hint.remove();
+              break;
+            } else if (belowPieceColor == !pieceColor) {
+              hint.classList.add("targeted");
+              break;
+            }
+          }
+        }
+        for (let j = 1; j < 9; j++) {
+          if (0 < X - j) {
+            const hint = document.createElement("div");
+            board.appendChild(hint);
+            hint.classList.add("box", "moves", "square-" + (X - j) + "" + Y);
+            let belowPieceColor = hintValidation(hint);
+            if (belowPieceColor == pieceColor) {
+              hint.remove();
+              break;
+            } else if (belowPieceColor == !pieceColor) {
+              hint.classList.add("targeted");
+              break;
+            }
+          }
+        }
+        // PAWN MOVES
       } else if (pieceType == "pawn") {
         let X = roundDownToNearest1(ogPosX);
         let Y = roundDownToNearest1(ogPosY);
         for (let i = 1; i < 3; i++) {
-          const hint = document.createElement("div");
-          board.appendChild(hint);
           if (pieceColor && 0 < Y - i) {
+            if (i == 1) {
+              for (let j = 1; j > -2; j--) {
+                if (j == 0) continue;
+                if (0 < X + j && X + j < 9) {
+                  const hint = document.createElement("div");
+                  board.appendChild(hint);
+                  hint.classList.add("box", "targeted", "moves", "square-" + (X + j) + "" + (Y - i));
+                  let belowPieceColor = hintValidation(hint);
+                  if (belowPieceColor != !pieceColor) {
+                    hint.remove();
+                  }
+                }
+              }
+            }
+            const hint = document.createElement("div");
+            board.appendChild(hint);
             hint.classList.add("box", "moves", "square-" + X + "" + (Y - i));
+            let belowPieceColor = hintValidation(hint);
+            if (belowPieceColor == pieceColor || belowPieceColor == !pieceColor) {
+              hint.remove();
+              break;
+            }
           } else if (!pieceColor && Y + i < 9) {
+            if (i == 1) {
+              for (let j = 1; j > -2; j--) {
+                if (j == 0) continue;
+                if (0 < X + j && X + j < 9) {
+                  const hint = document.createElement("div");
+                  board.appendChild(hint);
+                  hint.classList.add("box", "targeted", "moves", "square-" + (X + j) + "" + (Y + i));
+                  let belowPieceColor = hintValidation(hint);
+                  if (belowPieceColor != !pieceColor) {
+                    hint.remove();
+                  }
+                }
+              }
+            }
+            const hint = document.createElement("div");
+            board.appendChild(hint);
             hint.classList.add("box", "moves", "square-" + X + "" + (Y + i));
+            let belowPieceColor = hintValidation(hint);
+            if (belowPieceColor == pieceColor || belowPieceColor == !pieceColor) {
+              hint.remove();
+              break;
+            }
           }
         }
       }
     }
-    //check for same team
-    hints = document.querySelectorAll(".moves");
-    hints.forEach((hint) => {
-      let belowPieceColor = null;
-      const hintBounds = hint.getBoundingClientRect();
-      let hintPosX = hintBounds.right - (hintBounds.right - hintBounds.left) / 2;
-      let hintPosY = hintBounds.bottom - (hintBounds.bottom - hintBounds.top) / 2;
-      hints.forEach((hint) => {
-        hint.hidden = true;
-      });
-      let droppableBelow = document.elementFromPoint(hintPosX, hintPosY);
-      hints.forEach((hint) => {
-        hint.hidden = false;
-      });
-
-      // if (droppableBelow.classList.contains("piece")) {
-      //   console.log(droppableBelow);
-      // }
-
-      if (droppableBelow != null) {
-        if (droppableBelow.classList.contains("piece")) {
-          for (let i = droppableBelow.classList.length - 1; i >= 0; i--) {
-            const className = droppableBelow.classList[i];
-            if (className.startsWith("b")) {
-              belowPieceColor = true;
-            } else if (className.startsWith("w")) {
-              belowPieceColor = false;
-            }
-          }
-        }
-        if (belowPieceColor == pieceColor) {
-          hint.remove();
-        } else if (belowPieceColor == !pieceColor) {
-          hint.classList.add("targeted");
-        }
-      }
-    });
-
-    // take current location of piece (ogPos)
-
-    // take the color of the piece (if class starts with "b"= true / "w"= false) and type of piece (if class ends with "r"/"n"/"b"/"k"/"q"/"p")
-
-    // calculate and spit out all possible moves from that pos depending on piece:
-    // (using for-loops probably)
-
-    // example: bishop(53) gets +-11 and +-9
-    // possible move squares = 31 42 64 75 86 (+-11) and 17 26 35 44 62 71 (+-9)
-
-    // in a for loop draw elements for each number and add the square-"" class
-    // relative to the number
-
-    //    if a an enemy piece
-    //    (if class starts with "b"= true / "w"= false)
-    //    (the inverse of own color) is on the square (either log the positions of all the pieces)
-    //    draw a targeted square
-
-    //    if a friendly piece is on the square dont draw
-
-    //    a piece (except for knight) can only move up to the 1st piece in their path
-    //    so check if the piece encounters another piece and remove all hints after that point
-    //    if its an enemy draw a targeted hint instead
 
     // show hover square
     hover.classList.remove("visually-hidden");
 
+    squareRemove(selectedPiece);
     for (let i = selectedPiece.classList.length - 1; i >= 0; i--) {
       const className = selectedPiece.classList[i];
       if (className.startsWith("square")) {
@@ -511,7 +710,7 @@ chessPieces.forEach((piece) => {
 
       // checks what the targeted square is and what should happen to the pieces involved
       if ("enemy") {
-        // check if the targeted square has an enemy (ALWAYS DEFAULTING TO THIS)
+        // check if the targeted square has an enemy
         // remove current position class
         for (let i = piece.classList.length - 1; i >= 0; i--) {
           const className = piece.classList[i];
