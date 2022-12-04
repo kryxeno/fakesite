@@ -139,7 +139,6 @@ chessPieces.forEach((piece) => {
   let lastPosY = 0;
   let ogPosX = 0;
   let ogPosY = 0;
-  let currentDroppable = null;
   let elemBelow = null;
   let pieceColor = null;
   let pieceType = null;
@@ -165,6 +164,29 @@ chessPieces.forEach((piece) => {
     let hints = document.querySelectorAll(".moves");
     hints.forEach((hint) => {
       hint.remove();
+    });
+
+    piece.hidden = true;
+    hover.hidden = true;
+    selectedPiece.hidden = true;
+    elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+    piece.hidden = false;
+    hover.hidden = false;
+    selectedPiece.hidden = false;
+
+    piece.hidden = true;
+    hover.hidden = true;
+    selectedPiece.hidden = true;
+    hints = document.querySelectorAll(".moves");
+    hints.forEach((hint) => {
+      hint.hidden = true;
+    });
+    let target = document.elementFromPoint(event.clientX, event.clientY);
+    piece.hidden = false;
+    hover.hidden = false;
+    selectedPiece.hidden = false;
+    hints.forEach((hint) => {
+      hint.hidden = false;
     });
 
     // drawing possible moves
@@ -633,6 +655,21 @@ chessPieces.forEach((piece) => {
       piece.hidden = false;
       hover.hidden = false;
       selectedPiece.hidden = false;
+
+      piece.hidden = true;
+      hover.hidden = true;
+      selectedPiece.hidden = true;
+      hints = document.querySelectorAll(".moves");
+      hints.forEach((hint) => {
+        hint.hidden = true;
+      });
+      target = document.elementFromPoint(event.clientX, event.clientY);
+      piece.hidden = false;
+      hover.hidden = false;
+      selectedPiece.hidden = false;
+      hints.forEach((hint) => {
+        hint.hidden = false;
+      });
     }
 
     // move the piece on mousemove
@@ -654,45 +691,40 @@ chessPieces.forEach((piece) => {
       piece.style.transform = null;
       console.log("New Position = " + roundDownToNearest1(lastPosX) + "" + roundDownToNearest1(lastPosY));
 
-      // check if the piece has moved to a different square
-      if (roundDownToNearest1(lastPosX) == roundDownToNearest1(ogPosX) && roundDownToNearest1(lastPosY) == roundDownToNearest1(ogPosY)) {
-        // do nothing
-      } else {
-        // adds a second orange square at the new position
+      // checks what the targeted square is and what should happen to the pieces involved
+
+      // check if the targeted square has an enemy
+      // remove current position class
+
+      // check if there is an element below the mouse
+      if (elemBelow == null) {
+        return false;
+      } else if (elemBelow.classList.contains("targeted")) {
+        // removes and logs the piece below the mouse
+        console.log("Removed Piece = ");
+        console.log(target);
+        target.classList.add("visually-hidden");
+        squareRemove(piece);
+        piece.classList.add("square-" + roundDownToNearest1(lastPosX) + "" + roundDownToNearest1(lastPosY));
         selectedPiece2.classList.remove("visually-hidden");
         squareRemove(selectedPiece2);
         selectedPiece2.classList.add("square-" + roundDownToNearest1(lastPosX) + "" + roundDownToNearest1(lastPosY));
-        //remove all hints when finishing turn
         const hints = document.querySelectorAll(".moves");
         hints.forEach((hint) => {
           hint.remove();
         });
-      }
-
-      console.log(elemBelow);
-
-      // checks what the targeted square is and what should happen to the pieces involved
-      if ("enemy") {
-        // check if the targeted square has an enemy
-        // remove current position class
+      } else if (elemBelow.classList.contains("moves")) {
         squareRemove(piece);
         piece.classList.add("square-" + roundDownToNearest1(lastPosX) + "" + roundDownToNearest1(lastPosY));
-
-        // check if there is an element below the mouse
-        if (elemBelow == null) {
-          return false;
-        } else if (elemBelow.classList.contains("piece")) {
-          // removes and logs the piece below the mouse
-          console.log("Removed Piece = ");
-          console.log(elemBelow);
-          elemBelow.classList.add("visually-hidden");
-        }
-      } else if ("legal") {
-        // checks if the move is possible according to the piece that is being moved and if it is legal
-      } else if ("illegal") {
-        // checks if the move is invalid (will probably be just "else")
-        // friendly/illegal square/checks
-        // the piece will just return to the original position and the turn will keep going
+        selectedPiece2.classList.remove("visually-hidden");
+        squareRemove(selectedPiece2);
+        selectedPiece2.classList.add("square-" + roundDownToNearest1(lastPosX) + "" + roundDownToNearest1(lastPosY));
+        const hints = document.querySelectorAll(".moves");
+        hints.forEach((hint) => {
+          hint.remove();
+        });
+      } else {
+        //do nothing
       }
     };
   };

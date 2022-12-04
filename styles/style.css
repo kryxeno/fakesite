@@ -494,8 +494,8 @@ div.targeted {
   /* temporary debug stuff */
   /* pointer-events: none; */
   cursor: pointer;
-  border-radius: 0%;
-  background-color: rgb(212, 0, 212);
+  /* border-radius: 0%;
+  background-color: rgb(212, 0, 212); */
 }
 
 main > section:first-child ul li:hover {
