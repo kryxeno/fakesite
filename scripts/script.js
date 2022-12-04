@@ -80,6 +80,14 @@ darkButton.addEventListener("click", () => {
   setDarkModeLocalStorage(darkModeState);
 });
 
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// CHESS STARTS HERE
+// CHESS STARTS HERE
+// CHESS STARTS HERE
+// CHESS STARTS HERE
+// CHESS STARTS HERE
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 // https://javascript.info/mouse-drag-and-drop
 
 // changes browser coordinates into board coordinates
@@ -92,13 +100,22 @@ function roundDownToNearest1(num) {
 }
 
 // check what color a piece is
+let flip = false;
 function colorValidation(e) {
   for (let i = e.classList.length - 1; i >= 0; i--) {
     const className = e.classList[i];
     if (className.startsWith("b")) {
-      return true;
+      if (flip) {
+        return false;
+      } else {
+        return true;
+      }
     } else if (className.startsWith("w")) {
-      return false;
+      if (flip) {
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 }
@@ -170,13 +187,6 @@ chessPieces.forEach((piece) => {
     hover.hidden = true;
     selectedPiece.hidden = true;
     elemBelow = document.elementFromPoint(event.clientX, event.clientY);
-    piece.hidden = false;
-    hover.hidden = false;
-    selectedPiece.hidden = false;
-
-    piece.hidden = true;
-    hover.hidden = true;
-    selectedPiece.hidden = true;
     hints = document.querySelectorAll(".moves");
     hints.forEach((hint) => {
       hint.hidden = true;
@@ -219,14 +229,7 @@ chessPieces.forEach((piece) => {
       pieceType = null;
 
       // determines black or white piece (pieceColor)
-      for (let i = piece.classList.length - 1; i >= 0; i--) {
-        const className = piece.classList[i];
-        if (className.startsWith("b")) {
-          pieceColor = true;
-        } else if (className.startsWith("w")) {
-          pieceColor = false;
-        }
-      }
+      pieceColor = colorValidation(piece);
 
       // determines black or white piece (pieceColor)
       for (let i = piece.classList.length - 1; i >= 0; i--) {
@@ -567,7 +570,13 @@ chessPieces.forEach((piece) => {
       } else if (pieceType == "pawn") {
         let X = roundDownToNearest1(ogPosX);
         let Y = roundDownToNearest1(ogPosY);
-        for (let i = 1; i < 3; i++) {
+        let n = 2;
+        if (pieceColor && Y == 7) {
+          n = 3;
+        } else if (!pieceColor && Y == 2) {
+          n = 3;
+        }
+        for (let i = 1; i < n; i++) {
           if (pieceColor && 0 < Y - i) {
             if (i == 1) {
               for (let j = 1; j > -2; j--) {
@@ -652,13 +661,6 @@ chessPieces.forEach((piece) => {
       hover.hidden = true;
       selectedPiece.hidden = true;
       elemBelow = document.elementFromPoint(event.clientX, event.clientY);
-      piece.hidden = false;
-      hover.hidden = false;
-      selectedPiece.hidden = false;
-
-      piece.hidden = true;
-      hover.hidden = true;
-      selectedPiece.hidden = true;
       hints = document.querySelectorAll(".moves");
       hints.forEach((hint) => {
         hint.hidden = true;
@@ -666,6 +668,7 @@ chessPieces.forEach((piece) => {
       target = document.elementFromPoint(event.clientX, event.clientY);
       piece.hidden = false;
       hover.hidden = false;
+      selectedPiece.hidden = false;
       selectedPiece.hidden = false;
       hints.forEach((hint) => {
         hint.hidden = false;
@@ -691,12 +694,7 @@ chessPieces.forEach((piece) => {
       piece.style.transform = null;
       console.log("New Position = " + roundDownToNearest1(lastPosX) + "" + roundDownToNearest1(lastPosY));
 
-      // checks what the targeted square is and what should happen to the pieces involved
-
-      // check if the targeted square has an enemy
-      // remove current position class
-
-      // check if there is an element below the mouse
+      // check if there is an element below the mouse and do stuff according
       if (elemBelow == null) {
         return false;
       } else if (elemBelow.classList.contains("targeted")) {
@@ -734,3 +732,54 @@ chessPieces.forEach((piece) => {
     return false;
   };
 });
+
+function flipBoard() {
+  flip = !flip;
+  function invert(e) {
+    for (let i = e.classList.length - 1; i >= 0; i--) {
+      const className = e.classList[i];
+      if (className.startsWith("square")) {
+        number = className.slice(7);
+        number = 99 - number;
+        e.classList.remove(className);
+        e.classList.add("square-" + number);
+      }
+    }
+  }
+  chessPieces.forEach((piece) => {
+    invert(piece);
+  });
+  invert(selectedPiece);
+  invert(selectedPiece2);
+  const boardCoords = document.querySelectorAll("main > section:first-child svg text");
+  boardCoords.forEach((coord) => {
+    let text = coord.innerHTML;
+    if (isNaN(text)) {
+      if (text == "a") coord.innerHTML = "h";
+      if (text == "b") coord.innerHTML = "g";
+      if (text == "c") coord.innerHTML = "f";
+      if (text == "d") coord.innerHTML = "e";
+      if (text == "e") coord.innerHTML = "d";
+      if (text == "f") coord.innerHTML = "c";
+      if (text == "g") coord.innerHTML = "b";
+      if (text == "h") coord.innerHTML = "a";
+    } else {
+      text = 9 - text;
+      coord.innerHTML = text;
+    }
+  });
+}
+
+const flipBtn = document.querySelector(".flip-btn");
+flipBtn.addEventListener("click", flipBoard);
+
+// flipBoard();
+// TO-DO:
+// add sounds
+// disable inactive side
+// turns on move
+// make the moves class an after element
+
+// MAYBE:
+// add mouseclicking support (click on hints)
+// add checks
