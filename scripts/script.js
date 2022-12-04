@@ -91,6 +91,7 @@ function roundDownToNearest1(num) {
   }
 }
 
+// check what color a piece is
 function colorValidation(e) {
   for (let i = e.classList.length - 1; i >= 0; i--) {
     const className = e.classList[i];
@@ -600,13 +601,7 @@ chessPieces.forEach((piece) => {
     hover.classList.remove("visually-hidden");
 
     squareRemove(selectedPiece);
-    for (let i = selectedPiece.classList.length - 1; i >= 0; i--) {
-      const className = selectedPiece.classList[i];
-      if (className.startsWith("square")) {
-        selectedPiece.classList.remove(className);
-      }
-      selectedPiece.classList.add("square-" + roundDownToNearest1(ogPosX) + "" + roundDownToNearest1(ogPosY));
-    }
+    selectedPiece.classList.add("square-" + roundDownToNearest1(ogPosX) + "" + roundDownToNearest1(ogPosY));
 
     // moves the piece at (clientX, clientY) coordinates relative to chessboard
     function moveAt(clientX, clientY) {
@@ -622,13 +617,8 @@ chessPieces.forEach((piece) => {
       lastPosY = -800 + ((clientY - bounds.top) / ((bounds.bottom - bounds.top) / 100)) * 8;
 
       // updates position class of hover square
-      for (let i = hover.classList.length - 1; i >= 0; i--) {
-        const className = hover.classList[i];
-        if (className.startsWith("square")) {
-          hover.classList.remove(className);
-        }
-        hover.classList.add("square-" + roundDownToNearest1(lastPosX) + "" + roundDownToNearest1(lastPosY));
-      }
+      squareRemove(hover);
+      hover.classList.add("square-" + roundDownToNearest1(lastPosX) + "" + roundDownToNearest1(lastPosY));
     }
 
     function onMouseMove(event) {
@@ -639,35 +629,10 @@ chessPieces.forEach((piece) => {
       piece.hidden = true;
       hover.hidden = true;
       selectedPiece.hidden = true;
-      const hints = document.querySelectorAll(".moves");
-      hints.forEach((hint) => {
-        hint.hidden = true;
-      });
       elemBelow = document.elementFromPoint(event.clientX, event.clientY);
       piece.hidden = false;
       hover.hidden = false;
       selectedPiece.hidden = false;
-      hints.forEach((hint) => {
-        hint.hidden = false;
-      });
-
-      // if there is no element below just stop the function here
-      if (!elemBelow) return;
-
-      // if the square below is a piece assign this to droppableBelow
-      let droppableBelow = elemBelow.closest(".piece");
-
-      // entering and leaving the square
-      if (currentDroppable != droppableBelow) {
-        if (currentDroppable) {
-          // null when we were not over a droppable before this event
-        }
-        currentDroppable = droppableBelow;
-        if (currentDroppable) {
-          // null if we're not coming over a droppable now
-          // (maybe just left the droppable)
-        }
-      }
     }
 
     // move the piece on mousemove
@@ -695,31 +660,22 @@ chessPieces.forEach((piece) => {
       } else {
         // adds a second orange square at the new position
         selectedPiece2.classList.remove("visually-hidden");
-        for (let i = selectedPiece2.classList.length - 1; i >= 0; i--) {
-          const className = selectedPiece2.classList[i];
-          if (className.startsWith("square")) {
-            selectedPiece2.classList.remove(className);
-          }
-        }
+        squareRemove(selectedPiece2);
         selectedPiece2.classList.add("square-" + roundDownToNearest1(lastPosX) + "" + roundDownToNearest1(lastPosY));
+        //remove all hints when finishing turn
         const hints = document.querySelectorAll(".moves");
         hints.forEach((hint) => {
           hint.remove();
         });
       }
 
-      //remove all hints when finishing turn
+      console.log(elemBelow);
 
       // checks what the targeted square is and what should happen to the pieces involved
       if ("enemy") {
         // check if the targeted square has an enemy
         // remove current position class
-        for (let i = piece.classList.length - 1; i >= 0; i--) {
-          const className = piece.classList[i];
-          if (className.startsWith("square")) {
-            piece.classList.remove(className);
-          }
-        }
+        squareRemove(piece);
         piece.classList.add("square-" + roundDownToNearest1(lastPosX) + "" + roundDownToNearest1(lastPosY));
 
         // check if there is an element below the mouse
