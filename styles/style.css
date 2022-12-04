@@ -55,6 +55,17 @@ aside.removeAd {
   width: 1px;
 }
 
+.piece-taken {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  transform: translate(-99999%, 0%);
+}
+
 .no-scroll {
   overflow: hidden;
 }
@@ -449,6 +460,10 @@ main > section:first-child > svg text:nth-child(even) {
   background-size: 100%;
 }
 
+div.targeted {
+  padding: 0;
+  border-radius: 0%;
+}
 .targeted::after {
   content: "";
   position: absolute;
@@ -474,6 +489,11 @@ main > section:first-child > svg text:nth-child(even) {
   background-clip: content-box;
   box-sizing: border-box;
   padding: 4.2%;
+
+  /* temporary debug stuff */
+  pointer-events: none;
+  /* border-radius: 0%;
+  background-color: rgb(212, 0, 212); */
 }
 
 main > section:first-child ul li:hover {
