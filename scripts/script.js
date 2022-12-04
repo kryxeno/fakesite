@@ -106,7 +106,9 @@ function hintValidation(e) {
   const hintBounds = e.getBoundingClientRect();
   let hintPosX = hintBounds.right - (hintBounds.right - hintBounds.left) / 2;
   let hintPosY = hintBounds.bottom - (hintBounds.bottom - hintBounds.top) / 2;
+  e.hidden = true;
   let droppableBelow = document.elementFromPoint(hintPosX, hintPosY);
+  e.hidden = false;
 
   // different restults depending on color
   if (droppableBelow != null) {
