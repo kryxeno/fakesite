@@ -775,10 +775,16 @@ flipBtn.addEventListener("click", flipBoard);
 
 // flipBoard();
 // TO-DO:
-// add sounds
-// disable inactive side
+// add sounds xxxxxxxxxxx
+// disable inactive side xxxxxxxxxxxxxx
+
 // turns on move
 // make the moves class an after element
+
+// andere soorten interactie (text veld)
+// log moves
+
+// hoog contrast
 
 // MAYBE:
 // add mouseclicking support (click on hints)
