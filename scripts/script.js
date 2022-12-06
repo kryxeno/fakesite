@@ -574,9 +574,9 @@ chessPieces.forEach((piece) => {
         let X = roundDownToNearest1(ogPosX);
         let Y = roundDownToNearest1(ogPosY);
         let n = 2;
-        if (pieceColor && Y == 7) {
+        if (pieceColor && !hasMoved) {
           n = 3;
-        } else if (!pieceColor && Y == 2) {
+        } else if (!pieceColor && !hasMoved) {
           n = 3;
         }
         for (let i = 1; i < n; i++) {
