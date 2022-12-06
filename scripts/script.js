@@ -159,14 +159,17 @@ chessPieces.forEach((piece) => {
   let elemBelow = null;
   let pieceColor = null;
   let pieceType = null;
+  let hasMoved = false;
 
   piece.onmousedown = function (event) {
     // getting board bounds
     const bounds = board.getBoundingClientRect();
-
     // moving piece to mouse
     moveAt(event.clientX, event.clientY);
     piece.style.zIndex = 1000;
+
+    // check if piece has moved
+    console.log(hasMoved);
 
     // storing original position
     ogPosX = ((event.clientX - bounds.left) / ((bounds.right - bounds.left) / 100)) * 8;
@@ -711,6 +714,7 @@ chessPieces.forEach((piece) => {
         hints.forEach((hint) => {
           hint.remove();
         });
+        if (!hasMoved) hasMoved = true;
       } else if (elemBelow.classList.contains("moves")) {
         squareRemove(piece);
         piece.classList.add("square-" + roundDownToNearest1(lastPosX) + "" + roundDownToNearest1(lastPosY));
@@ -721,6 +725,7 @@ chessPieces.forEach((piece) => {
         hints.forEach((hint) => {
           hint.remove();
         });
+        if (!hasMoved) hasMoved = true;
       } else {
         //do nothing
       }
