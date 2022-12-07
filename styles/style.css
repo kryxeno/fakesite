@@ -4,18 +4,25 @@
 
 :root {
   --primary-color-text: #000000;
-  --secondary-color-text: hsla(0, 0%, 0%, 0.623);
+  --secondary-color-text: hsla(0, 0%, 0%, 0.6);
   --secondary-color-text-hover: hsla(0, 0%, 0%, 0.8);
   --tertiary-color-text: hsla(0, 0%, 0%, 0.8);
+  --footer-color-text: hsla(0, 0%, 100%, 0.3);
   --primary-color-background: #f1f1f1;
   --sidemenu-background: #ffffff;
   --sidemenu-background-hover: rgba(0, 0, 10, 0.15);
+  --global-background: rgba(0, 0, 0, 0.1);
+  --global-color-high: hsla(0, 0%, 0%, 0.85);
+  --global-color-low: hsla(0, 0%, 0%, 0.5);
   --form-background: hsla(0, 0%, 0%, 0.1);
-  --form-color: hsla(0, 0%, 0%, 0.623);
+  --form-color: hsla(0, 0%, 0%, 0.6);
   --icon-fallback: rgba(255, 255, 255, 0);
   --main-accent: rgba(0, 0, 0, 0.65);
+  --box-shadow-link: 0 0.5rem 0 0 rgba(0, 0, 0, 0.4);
+  --link-hover-background: hsla(0, 0%, 0%, 0.25);
   --primary-font: Segoe UI, system-ui, Helvetica, Arial, sans-serif;
   --secondary-font: "Montserrat", sans-serif;
+  --icon-font: Chess new;
   --side-padding: 0.7rem;
   --nav-icon-pos: -2.2rem -36.6rem;
 }
@@ -25,18 +32,23 @@
   --secondary-color-text: hsla(0, 0%, 100%, 0.4);
   --secondary-color-text-hover: hsla(0, 0%, 100%, 0.65);
   --tertiary-color-text: hsla(0, 0%, 100%, 0.8);
+  --footer-color-text: hsla(0, 0%, 100%, 0.5);
   --primary-color-background: #312e2b;
   --sidemenu-background: #262421;
   --sidemenu-background-hover: rgba(0, 0, 10, 0.15);
+  --global-background: rgba(0, 0, 0, 0.2);
+  --global-color-high: hsla(0, 0%, 100%, 0.85);
+  --global-color-low: hsla(0, 0%, 100%, 0.5);
   --form-background: hsla(0, 0%, 100%, 0.1);
   --form-color: hsla(0, 0%, 100%, 0.3);
   --icon-fallback: rgba(0, 0, 0, 0);
   --main-accent: rgba(0, 0, 0, 0.5);
+  --link-hover-background: hsla(0, 0%, 100%, 0.05);
   --nav-icon-pos: -2.2rem 0.3rem;
 }
 
 @font-face {
-  font-family: Chess New;
+  font-family: Chess new;
   src: url(./chessglyph-new.11d668b6.woff2);
 }
 
@@ -123,7 +135,7 @@ body {
 }
 
 span {
-  font-family: Chess New;
+  font-family: var(--icon-font);
   font-size: 3.2rem;
   font-weight: 400;
   line-height: 1;
@@ -152,7 +164,7 @@ nav ul {
 
 nav li a,
 button {
-  font-family: Chess New;
+  font-family: var(--icon-font);
   font-size: 3.2rem;
   line-height: 1;
   color: var(--secondary-color-text);
@@ -187,6 +199,26 @@ nav section:first-of-type div a:nth-child(2)::before {
   width: 13.1rem;
   display: block;
   flex-shrink: 0;
+}
+
+nav section:first-of-type > a {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+nav section:first-of-type > a:focus {
+  clip: unset;
+  clip-path: none;
+  height: auto;
+  overflow: visible;
+  position: unset;
+  white-space: nowrap;
+  width: auto;
 }
 
 nav section:last-of-type {
@@ -337,7 +369,7 @@ nav section:last-of-type ul:last-child button {
 }
 
 nav section:last-of-type ul:last-child li span {
-  font-family: Chess New;
+  font-family: var(--icon-font);
   font-size: 3.2rem;
   font-weight: 400;
   line-height: 1;
@@ -399,19 +431,191 @@ main aside button:hover {
   opacity: 0.65;
 }
 
-main > section:first-of-type {
+main > section:nth-child(2) {
+  display: grid;
+  gap: 1.6rem;
+  grid-template-columns: repeat(4, minmax(17.5rem, 1fr));
+  grid-template-rows: 1fr;
+  margin: 0.8rem auto 1.6rem;
+  max-width: 108.2rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 1.6rem 0.8rem;
+  margin: 1rem 0 2rem;
+  /* gap: 2rem; */
+}
+
+main > section:nth-child(2) > section:first-of-type a,
+main > section:nth-child(2) a > div p {
+  background-color: var(--global-background);
+  box-shadow: var(--box-shadow-link);
+  border-radius: 0.5rem;
+  padding: 1.2rem 1.6rem 1.2rem 1rem;
+  white-space: nowrap;
+  font-weight: 400;
+  font-size: 1.5rem;
+  font-family: var(--secondary-font);
   display: flex;
-  overflow: auto;
-  margin: 2rem 0;
-  gap: 2rem;
+  align-items: center;
+  transition: 0.1s;
 }
 
-main > section:first-of-type section {
-  min-width: 20rem;
+main > section:nth-child(2) > section:first-of-type a:hover,
+main > section:nth-child(2) section a:hover > div p,
+main > section:nth-child(2) > section:first-of-type a:focus,
+main > section:nth-child(2) section a:focus > div p {
+  background-color: var(--link-hover-background);
 }
 
-main > section:first-of-type section {
-  min-width: 20rem;
+main > section:nth-child(2) > section:first-of-type a::before,
+main > section:nth-child(2) header::before {
+  content: "";
+  display: inline-block;
+  height: 4rem;
+  width: 4rem;
+  margin-right: 0.8rem;
+}
+
+main > section:nth-child(2) > section:first-of-type li:nth-child(1) a::before {
+  background: url(../images/playwhite.9673f38c.svg) no-repeat 50% / contain;
+}
+
+main > section:nth-child(2) > section:first-of-type li:nth-child(2) a::before {
+  background: url(../images/computer.2318c3b4.svg) no-repeat 50% / contain;
+}
+
+main > section:nth-child(2) > section:first-of-type li:nth-child(3) a::before {
+  background: url(../images/handshake.fb30f50b.svg) no-repeat 50% / contain;
+}
+
+main > section:nth-child(2) section:nth-of-type(1) header::before {
+  background: url(../images/stone.16754acb.svg) no-repeat 50% / contain;
+  width: 6rem;
+  margin-top: -0.4rem;
+}
+
+main > section:nth-child(2) section:nth-of-type(2) header::before {
+  background: url(../images/puzzles-3d.cb835572.svg) no-repeat 50% / contain;
+  margin-top: -0.4rem;
+}
+
+main > section:nth-child(2) section:nth-of-type(3) header::before {
+  background: url(../images/lessons.540cfefe.svg) no-repeat 50% / contain;
+  margin-top: -0.4rem;
+}
+
+main > section:nth-child(2) section:nth-of-type(4) header::before {
+  background: url(../images/review.f954d63a.svg) no-repeat 50% / contain;
+  margin-top: -0.4rem;
+}
+
+main > section:nth-child(2) section {
+  display: flex;
+  flex-direction: column;
+}
+
+main > section:nth-child(2) ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+main > section:nth-child(2) header {
+  min-height: 6rem;
+  display: flex;
+}
+
+main > section:nth-child(2) header h2 {
+  white-space: nowrap;
+  font-size: 1.4rem;
+  line-height: 1rem;
+  font-family: var(--secondary-font);
+}
+
+main > section:nth-child(2) header h3 {
+  white-space: nowrap;
+  font-size: 2rem;
+  font-family: var(--secondary-font);
+  display: flex;
+  align-items: center;
+}
+
+main > section:nth-child(2) header h3 span {
+  font-size: 2.5rem;
+  color: var(--footer-color-text);
+}
+
+main > section:nth-child(2) header p {
+  line-height: 1.6rem;
+  color: var(--tertiary-color-text);
+  margin-top: 0.5rem;
+}
+
+main > section:nth-child(2) a > div {
+  display: block;
+}
+
+main > section:nth-child(2) a > div p {
+  display: block;
+  font-family: var(--primary-font);
+  font-weight: 600;
+  text-align: center;
+  width: 100%;
+}
+
+main > section:nth-child(2) a > div > div {
+  background-image: url("//images.chesscomfiles.com/chess-themes/boards/green/100.png");
+  padding-bottom: 100%;
+  position: relative;
+  background-size: 100% 100%;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+main > section:nth-child(2) header div div {
+  display: flex;
+  gap: 1rem;
+}
+
+main > section:nth-child(4) {
+  margin-top: 1rem;
+  padding: 0;
+}
+
+main > section:nth-child(4) header {
+  background-color: var(--global-background);
+  padding: 0 var(--side-padding);
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+main > section:nth-child(4) header a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--global-color-high);
+  padding: 1rem var(--side-padding);
+}
+
+main > section:nth-child(4) header a:hover,
+main > section:nth-child(4) header a:hover span,
+main > section:nth-child(4) header a:focus,
+main > section:nth-child(4) header a:focus span {
+  color: var(--primary-color-text);
+}
+
+main > section:nth-child(4) header a span {
+  font-size: 1.7rem;
+  font-weight: 400;
+  color: var(--global-color-low);
+  text-align: end;
+}
+
+main > section:nth-child(4) header a h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  font-family: var(--primary-font);
 }
 
 /**************/
@@ -567,12 +771,15 @@ footer ul {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 5rem;
-  color: var(--tertiary-color-text);
+  margin-top: 3rem;
+  color: var(--footer-color-text);
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 footer ul li a {
   padding: 0.5rem;
+  padding-left: 0;
   color: inherit;
 }
 
@@ -580,11 +787,60 @@ footer ul li:hover a {
   color: var(--primary-color-text);
 }
 
-footer ul li:not(:first-of-type) a::before {
+footer ul:first-of-type li:not(:first-of-type) a::before {
   content: "|";
-  margin-right: 0.7rem;
+  margin-right: 0.5rem;
 }
 
 footer ul li:hover a::before {
-  color: var(--tertiary-color-text);
+  color: var(--footer-color-text);
+}
+
+footer ul:last-of-type {
+  font-family: var(--icon-font);
+  font-size: 3.4rem;
+  margin-top: 1rem;
+  font-weight: 400;
+}
+
+footer ul:last-of-type li a {
+  padding: 0.5rem;
+}
+
+footer ul:last-of-type li:nth-child(2) {
+  margin-right: 2rem;
+}
+
+footer ul:last-of-type li:nth-child(2):hover a,
+footer ul:last-of-type li:nth-child(2) a:focus {
+  color: #a3cc28;
+}
+
+footer ul:last-of-type li:nth-child(4):hover a,
+footer ul:last-of-type li:nth-child(4) a:focus {
+  color: #1da1f2;
+}
+
+footer ul:last-of-type li:nth-child(5):hover a,
+footer ul:last-of-type li:nth-child(5) a:focus {
+  color: #e12711;
+}
+
+footer ul:last-of-type li:nth-child(6):hover a,
+footer ul:last-of-type li:nth-child(6) a:focus {
+  color: #9146ff;
+}
+
+footer ul:last-of-type li:nth-child(7):hover a,
+footer ul:last-of-type li:nth-child(7) a:focus {
+  color: #e93a56;
+}
+
+footer ul:last-of-type li:nth-child(8):hover a,
+footer ul:last-of-type li:nth-child(8) a:focus {
+  color: #5865f2;
+}
+
+footer ul li a:active {
+  color: white;
 }

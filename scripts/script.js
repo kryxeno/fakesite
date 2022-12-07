@@ -785,6 +785,7 @@ flipBtn.addEventListener("click", flipBoard);
 
 // turns on move
 // make the moves class an after element
+// castling & en passant
 
 // andere soorten interactie (text veld)
 // log moves

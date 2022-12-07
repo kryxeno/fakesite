@@ -16,21 +16,22 @@
             <button aria-label="Open sidebar for more navigation options" aria-expanded="false" aria-controls="sidebar">&#116;</button>
             <a href="./index.html" aria-label="To the homepage"></a>
           </div>
+          <a href="#main-content">Skip to main content</a>
           <ul>
             <li>
-              <a href="" aria-label="Friends overview">n</a>
+              <a href="#" aria-label="Friends overview">n</a>
             </li>
             <li>
               <a href="./chess.html" aria-label="Start playing chess">&#7960;</a>
             </li>
             <li>
-              <a href="" aria-label="Your messages">y</a>
+              <a href="#" aria-label="Your messages">y</a>
             </li>
             <li>
-              <a href="" aria-label="Notifications">q</a>
+              <a href="#" aria-label="Notifications">q</a>
             </li>
             <li>
-              <a href="" aria-label="Settings">&#183;</a>
+              <a href="#" aria-label="Settings">&#183;</a>
             </li>
           </ul>
         </section>
@@ -46,25 +47,25 @@
               <a href="./chess.html">Play</a>
             </li>
             <li>
-              <a href="">Puzzles</a>
+              <a href="#">Puzzles</a>
             </li>
             <li>
-              <a href="">Learn</a>
+              <a href="#">Learn</a>
             </li>
             <li>
-              <a href="">Watch</a>
+              <a href="#">Watch</a>
             </li>
             <li>
-              <a href="">News</a>
+              <a href="#">News</a>
             </li>
             <li>
-              <a href="">Social</a>
+              <a href="#">Social</a>
             </li>
             <li>
-              <a href="">More</a>
+              <a href="#">More</a>
             </li>
             <li>
-              <a href="">Free Trial</a>
+              <a href="#">Free Trial</a>
             </li>
             <li>
               <form action="">
@@ -75,30 +76,33 @@
           </ul>
           <ul>
             <li>
-              <button aria-label="Switch between light and dark mode"><span>&#7997;</span><span>Light UI</span></button>
+              <button aria-label="Switch between light and dark mode"><span aria-hidden="true">&#7997;</span><span>Light UI</span></button>
             </li>
             <li>
-              <a href="" aria-label="Settings"><span>&#183;</span>Settings</a>
+              <a href="#" aria-label="Settings"><span aria-hidden="true">&#183;</span>Settings</a>
             </li>
             <li>
-              <a href="" aria-label="Get help"><span>&#40;</span>Help</a>
+              <a href="#" aria-label="Get help"><span aria-hidden="true">&#40;</span>Help</a>
             </li>
           </ul>
         </section>
       </nav>
     </header>
-    <main>
+    <main id="main-content">
       <aside>
         <button type="button" aria-label="Close ad">&#66;</button>
-        <a href="">
-          <img src="./images/ad_img.png" alt="advertisement" />
+        <a href="#">
+          <img src="./images/ad_img.png" alt="Speedchess championship - learn more" />
         </a>
       </aside>
       <section>
+        <h1 class="visually-hidden">Welcome to Chess.com. The number 1 place to play chess!</h1>
         <section>
           <header>
-            <h2>Play</h2>
-            <h3>0<span>&#8101;</span></h3>
+            <div>
+              <h2>Play</h2>
+              <h3 aria-label="wins">0<span aria-hidden="true">&#8101;</span></h3>
+            </div>
           </header>
           <ul>
             <li>
@@ -113,67 +117,71 @@
           </ul>
         </section>
         <section>
-          <a href="">
+          <a href="#">
             <header>
-              <h2>Puzzles</h2>
-              <h3>1047</h3>
-            </header>
-            <div>
-              <section class="chessboard"></section>
               <div>
-                <p>Solve Puzzle</p>
+                <h2>Puzzles</h2>
+                <h3>1047</h3>
               </div>
+            </header>
+            <section class="chessboard"></section>
+            <div>
+              <div></div>
+              <p>Solve Puzzle</p>
             </div>
           </a>
         </section>
         <section>
-          <a href="">
+          <a href="#">
             <header>
-              <h2>Next Lesson</h2>
-              <p>Opening Principles:<br />Develop Your Pieces</p>
-            </header>
-            <div>
-              <section class="chessboard"></section>
               <div>
-                <p>Start Lesson</p>
+                <h2>Next Lesson</h2>
+                <p>Opening Principles:<br />Develop Your Pieces</p>
               </div>
+            </header>
+            <section class="chessboard"></section>
+            <div>
+              <div></div>
+              <p>Start Lesson</p>
             </div>
           </a>
         </section>
         <section>
-          <a href="">
+          <a href="#">
             <header>
-              <h2>Game Review</h2>
               <div>
-                <h3>33.1</h3>
+                <h2>Game Review</h2>
+                <div>
+                  <h3>33.1</h3>
+                  <p>Accuracy</p>
+                </div>
               </div>
             </header>
+            <section class="chessboard"></section>
             <div>
-              <section class="chessboard"></section>
-              <div>
-                <p>Start Lesson</p>
-              </div>
+              <div></div>
+              <p>Review vs vel1969</p>
             </div>
           </a>
         </section>
       </section>
       <aside>
         <button type="button" aria-label="Close ad">&#66;</button>
-        <a href="">
-          <img src="./images/ad_img.png" alt="advertisement" />
+        <a href="#">
+          <img src="./images/ad_img.png" alt="Speedchess championship - learn more" />
         </a>
       </aside>
       <section>
         <header>
-          <a href="">
+          <a href="#">
             <h2>Completed Games</h2>
-            <span>></span>
+            <span aria-hidden="true">&#8230;</span>
           </a>
         </header>
-        <table>
+        <!-- <table>
           <thead>
             <tr>
-              <th><!-- empty --></th>
+              <th></th>
               <th>Pages</th>
               <th>Result</th>
               <th>Analysis</th>
@@ -184,12 +192,12 @@
           <tbody>
             <tr>
               <th>
-                <a href=""></a>
+                <a href="#"></a>
               </th>
               <th>Players</th>
               <th>result here</th>
               <th>
-                <a href="">Analyze</a>
+                <a href="#">Analyze</a>
               </th>
               <th>
                 <p>15</p>
@@ -199,40 +207,66 @@
               </th>
             </tr>
           </tbody>
-        </table>
+        </table> -->
       </section>
     </main>
     <footer>
       <ul>
         <li>
-          <a href="">Help</a>
+          <a href="#">Help</a>
         </li>
         <li>
-          <a href="">Language</a>
+          <a href="#">Language</a>
         </li>
         <li>
-          <a href="">About</a>
+          <a href="#">About</a>
         </li>
         <li>
-          <a href="">Jobs</a>
+          <a href="#">Jobs</a>
         </li>
         <li>
-          <a href="">Developers</a>
+          <a href="#">Developers</a>
         </li>
         <li>
-          <a href="">User Agreement</a>
+          <a href="#">User Agreement</a>
         </li>
         <li>
-          <a href="">Privacy</a>
+          <a href="#">Privacy</a>
         </li>
         <li>
-          <a href="">Fair Play</a>
+          <a href="#">Fair Play</a>
         </li>
         <li>
-          <a href="">Community</a>
+          <a href="#">Community</a>
         </li>
         <li>
-          <p>Chess.com &copy; 2022</p>
+          <a href="#">Chess.com &copy; 2022</a>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <a href="#" aria-label="Link to Apple app">&#9674;</a>
+        </li>
+        <li>
+          <a href="#" aria-label="Link to android app">&#254;</a>
+        </li>
+        <li>
+          <a href="#" aria-label="Link to tiktok">&#8112;</a>
+        </li>
+        <li>
+          <a href="#" aria-label="Link to twitter">F</a>
+        </li>
+        <li>
+          <a href="#" aria-label="Link to youtube">&#96;</a>
+        </li>
+        <li>
+          <a href="#" aria-label="Link to twitch">&#915;</a>
+        </li>
+        <li>
+          <a href="#" aria-label="Link to instagram">&#7936;</a>
+        </li>
+        <li>
+          <a href="#" aria-label="Link to discord">&#8008;</a>
         </li>
       </ul>
     </footer>
