@@ -11,6 +11,7 @@ function burgerMenu() {
   if (open) {
     sideMenu.classList.remove("menuOpen");
     document.documentElement.classList.remove("no-scroll");
+    sideMenu.setAttribute("inert", open);
     open = false;
     burgerIcon.setAttribute("aria-expanded", open);
     closeIcon.setAttribute("aria-expanded", open);
@@ -18,6 +19,7 @@ function burgerMenu() {
   } else {
     sideMenu.classList.add("menuOpen");
     document.documentElement.classList.add("no-scroll");
+    sideMenu.removeAttribute("inert");
     open = true;
     burgerIcon.setAttribute("aria-expanded", open);
     closeIcon.setAttribute("aria-expanded", open);
