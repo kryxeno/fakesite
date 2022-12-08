@@ -5,6 +5,8 @@
 const burgerIcon = document.querySelector("nav section:first-of-type div button");
 const closeIcon = document.querySelector("nav section:last-of-type ul li:first-child button");
 const sideMenu = document.querySelector("nav section:last-of-type");
+const firstMenuOption = document.querySelector("#sidebar button");
+const lastMenuOption = document.querySelector("#sidebar ul:last-of-type li:last-child");
 let open = false;
 
 function burgerMenu() {
@@ -29,6 +31,8 @@ function burgerMenu() {
 
 burgerIcon.addEventListener("click", burgerMenu);
 closeIcon.addEventListener("click", burgerMenu);
+firstMenuOption.addEventListener("focusin", burgerMenu);
+lastMenuOption.addEventListener("focusout", burgerMenu);
 
 //Ad removal
 
@@ -161,7 +165,7 @@ chessPieces.forEach((piece) => {
   let elemBelow = null;
   let pieceColor = null;
   let pieceType = null;
-  let hasMoved = false;
+  let moves = 0;
 
   piece.onmousedown = function (event) {
     // getting board bounds
@@ -171,7 +175,7 @@ chessPieces.forEach((piece) => {
     piece.style.zIndex = 1000;
 
     // check if piece has moved
-    console.log(hasMoved);
+    console.log(moves);
 
     // storing original position
     ogPosX = ((event.clientX - bounds.left) / ((bounds.right - bounds.left) / 100)) * 8;
@@ -576,9 +580,9 @@ chessPieces.forEach((piece) => {
         let X = roundDownToNearest1(ogPosX);
         let Y = roundDownToNearest1(ogPosY);
         let n = 2;
-        if (pieceColor && !hasMoved) {
+        if (pieceColor && moves == 0) {
           n = 3;
-        } else if (!pieceColor && !hasMoved) {
+        } else if (!pieceColor && moves == 0) {
           n = 3;
         }
         for (let i = 1; i < n; i++) {
@@ -594,6 +598,33 @@ chessPieces.forEach((piece) => {
                   if (belowPieceColor != !pieceColor) {
                     hint.remove();
                   }
+                  const tempHint = document.createElement("div");
+                  board.appendChild(tempHint);
+                  tempHint.classList.add("box", "moves", "square-" + (X + j) + "" + Y);
+                  belowPieceColor = hintValidation(tempHint);
+
+                  const hintBounds = tempHint.getBoundingClientRect();
+                  let hintPosX = hintBounds.right - (hintBounds.right - hintBounds.left) / 2;
+                  let hintPosY = hintBounds.bottom - (hintBounds.bottom - hintBounds.top) / 2;
+                  tempHint.hidden = true;
+                  let droppableBelow = document.elementFromPoint(hintPosX, hintPosY);
+                  tempHint.hidden = false;
+
+                  let oppMoves = null;
+                  let enpassant = false;
+                  if (droppableBelow != null) {
+                    if (droppableBelow.classList.contains("piece")) {
+                      oppMoves = droppableBelow.getAttribute("data-moves");
+                    }
+                  }
+                  if (Y == 4 && pieceColor) enpassant = true;
+                  if (belowPieceColor == !pieceColor && oppMoves == 1 && enpassant) {
+                    console.log("cool");
+                    const hint = document.createElement("div");
+                    board.appendChild(hint);
+                    hint.classList.add("box", "targeted", "moves", "square-" + (X + j) + "" + (Y - i));
+                  }
+                  tempHint.remove();
                 }
               }
             }
@@ -716,7 +747,8 @@ chessPieces.forEach((piece) => {
         hints.forEach((hint) => {
           hint.remove();
         });
-        if (!hasMoved) hasMoved = true;
+        moves++;
+        piece.setAttribute("data-moves", moves);
       } else if (elemBelow.classList.contains("moves")) {
         squareRemove(piece);
         piece.classList.add("square-" + roundDownToNearest1(lastPosX) + "" + roundDownToNearest1(lastPosY));
@@ -727,7 +759,8 @@ chessPieces.forEach((piece) => {
         hints.forEach((hint) => {
           hint.remove();
         });
-        if (!hasMoved) hasMoved = true;
+        moves++;
+        piece.setAttribute("data-moves", moves);
       } else {
         //do nothing
       }

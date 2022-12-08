@@ -623,7 +623,7 @@ main > section:nth-child(4) header a h2 {
 /**************/
 
 main > section:first-child {
-  max-width: 70rem;
+  max-width: 60rem;
   aspect-ratio: 1/1;
   margin: 0 auto;
   display: flex;
