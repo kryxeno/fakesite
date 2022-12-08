@@ -623,6 +623,7 @@ chessPieces.forEach((piece) => {
                     const hint = document.createElement("div");
                     board.appendChild(hint);
                     hint.classList.add("box", "targeted", "moves", "square-" + (X + j) + "" + (Y - i));
+                    hint.setAttribute("data-enpassant", true);
                   }
                   tempHint.remove();
                 }

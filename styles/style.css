@@ -14,6 +14,7 @@
   --global-background: rgba(0, 0, 0, 0.1);
   --global-color-high: hsla(0, 0%, 0%, 0.85);
   --global-color-low: hsla(0, 0%, 0%, 0.5);
+  --global-link-color: #52b1dc;
   --form-background: hsla(0, 0%, 0%, 0.1);
   --form-color: hsla(0, 0%, 0%, 0.6);
   --icon-fallback: rgba(255, 255, 255, 0);
@@ -21,7 +22,7 @@
   --box-shadow-link: 0 0.5rem 0 0 rgba(0, 0, 0, 0.4);
   --link-hover-background: hsla(0, 0%, 0%, 0.25);
   --primary-font: Segoe UI, system-ui, Helvetica, Arial, sans-serif;
-  --secondary-font: "Montserrat", sans-serif;
+  --secondary-font: montserrat, sans-serif;
   --icon-font: Chess new;
   --side-padding: 0.7rem;
   --nav-icon-pos: -2.2rem -36.6rem;
@@ -436,13 +437,11 @@ main > section:nth-child(2) {
   gap: 1.6rem;
   grid-template-columns: repeat(4, minmax(17.5rem, 1fr));
   grid-template-rows: 1fr;
-  margin: 0.8rem auto 1.6rem;
   max-width: 108.2rem;
   overflow-x: auto;
   overflow-y: hidden;
   padding: 1.6rem 0.8rem;
-  margin: 1rem 0 2rem;
-  /* gap: 2rem; */
+  margin: 3rem 0 2rem;
 }
 
 main > section:nth-child(2) > section:first-of-type a,
@@ -452,7 +451,7 @@ main > section:nth-child(2) a > div p {
   border-radius: 0.5rem;
   padding: 1.2rem 1.6rem 1.2rem 1rem;
   white-space: nowrap;
-  font-weight: 400;
+  font-weight: 600;
   font-size: 1.5rem;
   font-family: var(--secondary-font);
   display: flex;
@@ -579,15 +578,17 @@ main > section:nth-child(2) header div div {
 }
 
 main > section:nth-child(4) {
-  margin-top: 1rem;
+  margin-top: 2.5rem;
   padding: 0;
+  background-color: var(--global-background);
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
 }
 
 main > section:nth-child(4) header {
-  background-color: var(--global-background);
+  /* background-color: var(--global-background); */
   padding: 0 var(--side-padding);
-  border-top-left-radius: 0.5rem;
-  border-top-right-radius: 0.5rem;
+  border-radius: 0.5rem;
 }
 
 main > section:nth-child(4) header a {
@@ -595,7 +596,7 @@ main > section:nth-child(4) header a {
   justify-content: space-between;
   align-items: center;
   color: var(--global-color-high);
-  padding: 1rem var(--side-padding);
+  padding: 1.4rem var(--side-padding);
 }
 
 main > section:nth-child(4) header a:hover,
@@ -606,18 +607,112 @@ main > section:nth-child(4) header a:focus span {
 }
 
 main > section:nth-child(4) header a span {
-  font-size: 1.7rem;
+  font-size: 2.2rem;
   font-weight: 400;
   color: var(--global-color-low);
   text-align: end;
 }
 
 main > section:nth-child(4) header a h2 {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: 600;
   font-family: var(--primary-font);
 }
 
+main > section:nth-child(4) table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+main > section:nth-child(4) table tr {
+  border-top: 0.1rem solid var(--form-background);
+}
+
+main > section:nth-child(4) table thead tr {
+  background-color: var(--global-background);
+  color: var(--footer-color-text);
+}
+
+main > section:nth-child(4) table tbody tr:hover {
+  background-color: var(--global-background);
+}
+
+main > section:nth-child(4) table tr:first-child {
+  border-top: 0;
+}
+
+main > section:nth-child(4) table tr th {
+  border-top-color: var(--form-background);
+  font-weight: 600;
+  font-size: 1.2rem;
+  padding: 1rem 1.7rem;
+  text-align: left;
+}
+
+main > section:nth-child(4) table tr th:nth-child(4),
+main > section:nth-child(4) table tr th:nth-child(5),
+main > section:nth-child(4) table tr td:nth-child(4),
+main > section:nth-child(4) table tr td:nth-child(5) {
+  text-align: center;
+  max-width: 4rem;
+}
+
+main > section:nth-child(4) table tr th:nth-child(6),
+main > section:nth-child(4) table tr td:nth-child(6) {
+  text-align: right;
+  padding-right: 2.5rem;
+  max-width: 5rem;
+}
+
+main > section:nth-child(4) table tr td {
+  padding: 1.6rem 0.8rem;
+}
+
+main > section:nth-child(4) table tr td a,
+main > section:nth-child(4) table time {
+  color: var(--tertiary-color-text);
+}
+
+main > section:nth-child(4) table tr td:first-child a,
+main > section:nth-child(4) table tr td:nth-child(3) div:last-of-type {
+  display: inline-block;
+  color: #a58a45;
+  font-family: var(--icon-font);
+  font-size: 2.8rem;
+  min-width: 5rem;
+  width: 100%;
+  text-align: center;
+}
+
+main > section:nth-child(4) table tr td:nth-child(3) div:first-of-type {
+  color: var(--global-color-low);
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+main > section:nth-child(4) table tr td:nth-child(3) {
+  width: 2rem;
+}
+
+main > section:nth-child(4) table tr td:nth-child(3) a {
+  display: flex;
+  align-items: center;
+}
+
+main > section:nth-child(4) table tr td div:last-of-type.icon-loss {
+  color: #b23330;
+  width: 1rem;
+}
+
+main > section:nth-child(4) table tr td div:last-of-type.icon-win {
+  color: #769656;
+  width: 1rem;
+}
+
+main > section:nth-child(4) table tr td:nth-child(4) a {
+  color: var(--global-link-color);
+}
 /**************/
 /* Chessboard */
 /**************/
