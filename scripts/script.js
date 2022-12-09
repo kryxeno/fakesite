@@ -160,6 +160,23 @@ const hover = document.querySelector(".hover");
 const selectedPiece = document.querySelector(".active");
 const selectedPiece2 = document.querySelector(".active2");
 const board = document.querySelector("main > section:first-child");
+const flipBtn = document.querySelector(".flip-btn");
+
+// audio
+let audioPlayer = new Audio(),
+  i = 0;
+const chessMoveAudio = new Array("../sounds/piece_move1.wav", "../sounds/piece_move2.wav");
+const chessTakeAudio = new Array("../sounds/piece_take1.wav", "../sounds/piece_take2.wav");
+const chessCastleAudio = new Array("../sounds/piece_castle1.wav", "../sounds/piece_castle2.wav");
+const chessStartAudio = "../sounds/game_start.wav";
+audioPlayer.volume = 0.3;
+audioPlayer.loop = false;
+audioPlayer.addEventListener("ended", () => {
+  if (i == 0) i = 1;
+  if (i == 1) i = 0;
+});
+audioPlayer.src = chessStartAudio;
+if (flipBtn != null) audioPlayer.play();
 
 chessPieces.forEach((piece) => {
   let lastPosX = 0;
@@ -754,6 +771,8 @@ chessPieces.forEach((piece) => {
         });
         moves++;
         piece.setAttribute("data-moves", moves);
+        audioPlayer.src = chessTakeAudio[i];
+        audioPlayer.play();
       } else if (elemBelow.classList.contains("moves")) {
         squareRemove(piece);
         piece.classList.add("square-" + roundDownToNearest1(lastPosX) + "" + roundDownToNearest1(lastPosY));
@@ -766,6 +785,8 @@ chessPieces.forEach((piece) => {
         });
         moves++;
         piece.setAttribute("data-moves", moves);
+        audioPlayer.src = chessMoveAudio[i];
+        audioPlayer.play();
       } else {
         //do nothing
       }
@@ -815,12 +836,10 @@ function flipBoard() {
   });
 }
 
-const flipBtn = document.querySelector(".flip-btn");
 flipBtn.addEventListener("click", flipBoard);
 
 // flipBoard();
 // TO-DO:
-// add sounds xxxxxxxxxxx
 // disable inactive side xxxxxxxxxxxxxx
 
 // turns on move
