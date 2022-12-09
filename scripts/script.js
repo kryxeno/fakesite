@@ -5,7 +5,7 @@
 const burgerIcon = document.querySelector("nav section:first-of-type div button");
 const closeIcon = document.querySelector("nav section:last-of-type ul li:first-child button");
 const sideMenu = document.querySelector("nav section:last-of-type");
-const firstMenuOption = document.querySelector("#sidebar button");
+const firstMenuOption = document.querySelector("#sidebar ul:first-of-type li:first-child");
 const lastMenuOption = document.querySelector("#sidebar ul:last-of-type li:last-child");
 let open = false;
 
@@ -14,6 +14,8 @@ function burgerMenu() {
     sideMenu.classList.remove("menuOpen");
     document.documentElement.classList.remove("no-scroll");
     sideMenu.setAttribute("inert", open);
+    firstMenuOption.addEventListener("focusin", burgerMenu);
+    lastMenuOption.removeEventListener("focusout", burgerMenu);
     open = false;
     burgerIcon.setAttribute("aria-expanded", open);
     closeIcon.setAttribute("aria-expanded", open);
@@ -22,6 +24,8 @@ function burgerMenu() {
     sideMenu.classList.add("menuOpen");
     document.documentElement.classList.add("no-scroll");
     sideMenu.removeAttribute("inert");
+    firstMenuOption.removeEventListener("focusin", burgerMenu);
+    lastMenuOption.addEventListener("focusout", burgerMenu);
     open = true;
     burgerIcon.setAttribute("aria-expanded", open);
     closeIcon.setAttribute("aria-expanded", open);
@@ -31,8 +35,8 @@ function burgerMenu() {
 
 burgerIcon.addEventListener("click", burgerMenu);
 closeIcon.addEventListener("click", burgerMenu);
-firstMenuOption.addEventListener("focusin", burgerMenu);
 lastMenuOption.addEventListener("focusout", burgerMenu);
+firstMenuOption.addEventListener("focusin", burgerMenu);
 
 //Ad removal
 

@@ -20,6 +20,7 @@
   --icon-fallback: rgba(255, 255, 255, 0);
   --main-accent: rgba(0, 0, 0, 0.65);
   --box-shadow-link: 0 0.5rem 0 0 rgba(0, 0, 0, 0.4);
+  --player-rating: rgb(139, 137, 135);
   --link-hover-background: hsla(0, 0%, 0%, 0.25);
   --primary-font: Segoe UI, system-ui, Helvetica, Arial, sans-serif;
   --secondary-font: montserrat, sans-serif;
@@ -44,6 +45,7 @@
   --form-color: hsla(0, 0%, 100%, 0.3);
   --icon-fallback: rgba(0, 0, 0, 0);
   --main-accent: rgba(0, 0, 0, 0.5);
+  --player-rating: rgb(139, 137, 135);
   --link-hover-background: hsla(0, 0%, 100%, 0.05);
   --nav-icon-pos: -2.2rem 0.3rem;
 }
@@ -441,7 +443,7 @@ main > section:nth-child(2) {
   overflow-x: auto;
   overflow-y: hidden;
   padding: 1.6rem 0.8rem;
-  margin: 3rem 0 2rem;
+  margin: 1rem 0 2rem;
 }
 
 main > section:nth-child(2) > section:first-of-type a,
@@ -583,6 +585,7 @@ main > section:nth-child(4) {
   background-color: var(--global-background);
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
+  overflow: auto;
 }
 
 main > section:nth-child(4) header {
@@ -655,14 +658,14 @@ main > section:nth-child(4) table tr th:nth-child(5),
 main > section:nth-child(4) table tr td:nth-child(4),
 main > section:nth-child(4) table tr td:nth-child(5) {
   text-align: center;
-  max-width: 4rem;
+  max-width: 7rem;
 }
 
 main > section:nth-child(4) table tr th:nth-child(6),
 main > section:nth-child(4) table tr td:nth-child(6) {
   text-align: right;
   padding-right: 2.5rem;
-  max-width: 5rem;
+  max-width: 10rem;
 }
 
 main > section:nth-child(4) table tr td {
@@ -674,13 +677,60 @@ main > section:nth-child(4) table time {
   color: var(--tertiary-color-text);
 }
 
+main > section:nth-child(4) table tr td:nth-child(2) a > div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+main > section:nth-child(4) table tr td:nth-child(2) div h3 {
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+
+main > section:nth-child(4) table tr td:nth-child(2) div p {
+  color: var(--player-rating);
+}
+
+main > section:nth-child(4) table tr td:nth-child(2) a > div::before {
+  content: "";
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--primary-color-text);
+  border-radius: 3px;
+}
+
+main > section:nth-child(4) table tr td:nth-child(2) a > div:last-of-type::before {
+  background-color: var(--form-color);
+}
+
+main > section:nth-child(4) table tr td:nth-child(2) a > div.win::before {
+  border: solid 2px #a3cc28;
+}
+
+main > section:nth-child(4) div div.flag {
+  align-items: center;
+  background-image: url(../images//flags-small-v3.dd4a3297.png);
+  background-size: 25.6rem 27.2rem;
+  display: inline-flex;
+  flex-shrink: 0;
+  height: 1.6rem;
+  justify-content: center;
+  width: 1.6rem;
+  margin-top: 0.2rem;
+}
+
+main > section:nth-child(4) div div.country-1 {
+  background-position: 86.58% 56.25%;
+}
+
 main > section:nth-child(4) table tr td:first-child a,
 main > section:nth-child(4) table tr td:nth-child(3) div:last-of-type {
   display: inline-block;
   color: #a58a45;
   font-family: var(--icon-font);
   font-size: 2.8rem;
-  min-width: 5rem;
+  min-width: 4rem;
   width: 100%;
   text-align: center;
 }
