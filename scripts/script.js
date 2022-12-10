@@ -155,6 +155,40 @@ function squareRemove(e) {
   }
 }
 
+function pieceValidation(e) {
+  for (let i = e.classList.length - 1; i >= 0; i--) {
+    const className = e.classList[i];
+    if (className.endsWith("r")) {
+      return "rook";
+    } else if (className.endsWith("n")) {
+      return "knight";
+    } else if (className.endsWith("b")) {
+      return "bishop";
+    } else if (className.endsWith("k")) {
+      return "king";
+    } else if (className.endsWith("q")) {
+      return "queen";
+    } else if (className.endsWith("p")) {
+      return "pawn";
+    }
+  }
+}
+
+function typeSelection(e) {
+  const hintBounds = e.getBoundingClientRect();
+  let hintPosX = hintBounds.right - (hintBounds.right - hintBounds.left) / 2;
+  let hintPosY = hintBounds.bottom - (hintBounds.bottom - hintBounds.top) / 2;
+  e.hidden = true;
+  let droppableBelow = document.elementFromPoint(hintPosX, hintPosY);
+  e.hidden = false;
+
+  if (droppableBelow != null) {
+    if (droppableBelow.classList.contains("piece")) {
+      return pieceValidation(droppableBelow);
+    }
+  }
+}
+
 const chessPieces = document.querySelectorAll(".piece");
 const hover = document.querySelector(".hover");
 const selectedPiece = document.querySelector(".active");
@@ -262,22 +296,7 @@ chessPieces.forEach((piece) => {
       pieceColor = colorValidation(piece);
 
       // determines black or white piece (pieceColor)
-      for (let i = piece.classList.length - 1; i >= 0; i--) {
-        const className = piece.classList[i];
-        if (className.endsWith("r")) {
-          pieceType = "rook";
-        } else if (className.endsWith("n")) {
-          pieceType = "knight";
-        } else if (className.endsWith("b")) {
-          pieceType = "bishop";
-        } else if (className.endsWith("k")) {
-          pieceType = "king";
-        } else if (className.endsWith("q")) {
-          pieceType = "queen";
-        } else if (className.endsWith("p")) {
-          pieceType = "pawn";
-        }
-      }
+      pieceType = pieceValidation(piece);
 
       // log piece details
       if (pieceColor) {
@@ -472,6 +491,52 @@ chessPieces.forEach((piece) => {
             }
           }
         }
+        for (let j = 1; j < 9; j++) {
+          if (0 < X + j) {
+            const hint = document.createElement("div");
+            board.appendChild(hint);
+            hint.classList.add("box", "targeted", "moves", "square-" + (X - j) + "" + Y);
+            let belowPieceColor = hintValidation(hint);
+            let belowPieceType = typeSelection(hint);
+
+            if (belowPieceColor == pieceColor && belowPieceType == "rook") {
+              const hint2 = document.createElement("div");
+              board.appendChild(hint2);
+              hint2.classList.add("box", "moves", "square-" + (X - j + 2) + "" + Y);
+              hint.setAttribute("data-castling", "left");
+              hint2.setAttribute("data-castling", "left");
+              break;
+            } else if (belowPieceColor == pieceColor) {
+              hint.remove();
+              break;
+            } else {
+              hint.remove();
+            }
+          }
+        }
+        for (let j = 1; j < 9; j++) {
+          if (X + j < 9) {
+            const hint = document.createElement("div");
+            board.appendChild(hint);
+            hint.classList.add("box", "targeted", "moves", "square-" + (X + j) + "" + Y);
+            let belowPieceColor = hintValidation(hint);
+            let belowPieceType = typeSelection(hint);
+
+            if (belowPieceColor == pieceColor && belowPieceType == "rook") {
+              const hint2 = document.createElement("div");
+              board.appendChild(hint2);
+              hint2.classList.add("box", "moves", "square-" + (X + j - 1) + "" + Y);
+              hint.setAttribute("data-castling", "right");
+              hint2.setAttribute("data-castling", "right");
+              break;
+            } else if (belowPieceColor == pieceColor) {
+              hint.remove();
+              break;
+            } else {
+              hint.remove();
+            }
+          }
+        }
         // QUEEN MOVES
       } else if (pieceType == "queen") {
         let X = roundDownToNearest1(ogPosX);
@@ -619,9 +684,10 @@ chessPieces.forEach((piece) => {
                   if (belowPieceColor != !pieceColor) {
                     hint.remove();
                   }
+
                   const tempHint = document.createElement("div");
                   board.appendChild(tempHint);
-                  tempHint.classList.add("box", "moves", "square-" + (X + j) + "" + Y);
+                  tempHint.classList.add("box", "targeted", "moves", "square-" + (X + j) + "" + Y);
                   belowPieceColor = hintValidation(tempHint);
 
                   const hintBounds = tempHint.getBoundingClientRect();
@@ -632,21 +698,21 @@ chessPieces.forEach((piece) => {
                   tempHint.hidden = false;
 
                   let oppMoves = null;
+                  let recentlyMoved = false;
                   let enpassant = false;
                   if (droppableBelow != null) {
                     if (droppableBelow.classList.contains("piece")) {
                       oppMoves = droppableBelow.getAttribute("data-moves");
+                      recentlyMoved = droppableBelow.getAttribute("data-recently-moved");
                     }
                   }
-                  if (Y == 4 && pieceColor) enpassant = true;
+                  if (Y == 4 && recentlyMoved) enpassant = true;
                   if (belowPieceColor == !pieceColor && oppMoves == 1 && enpassant) {
                     console.log("cool");
-                    const hint = document.createElement("div");
-                    board.appendChild(hint);
-                    hint.classList.add("box", "targeted", "moves", "square-" + (X + j) + "" + (Y - i));
-                    hint.setAttribute("data-enpassant", true);
-                  }
-                  tempHint.remove();
+                    squareRemove(tempHint);
+                    tempHint.classList.add("box", "targeted", "moves", "square-" + (X + j) + "" + (Y - i));
+                    tempHint.setAttribute("data-enpassant", true);
+                  } else tempHint.remove();
                 }
               }
             }
@@ -670,6 +736,35 @@ chessPieces.forEach((piece) => {
                   if (belowPieceColor != !pieceColor) {
                     hint.remove();
                   }
+
+                  const tempHint = document.createElement("div");
+                  board.appendChild(tempHint);
+                  tempHint.classList.add("box", "targeted", "moves", "square-" + (X + j) + "" + Y);
+                  belowPieceColor = hintValidation(tempHint);
+
+                  const hintBounds = tempHint.getBoundingClientRect();
+                  let hintPosX = hintBounds.right - (hintBounds.right - hintBounds.left) / 2;
+                  let hintPosY = hintBounds.bottom - (hintBounds.bottom - hintBounds.top) / 2;
+                  tempHint.hidden = true;
+                  let droppableBelow = document.elementFromPoint(hintPosX, hintPosY);
+                  tempHint.hidden = false;
+
+                  let oppMoves = null;
+                  let recentlyMoved = false;
+                  let enpassant = false;
+                  if (droppableBelow != null) {
+                    if (droppableBelow.classList.contains("piece")) {
+                      oppMoves = droppableBelow.getAttribute("data-moves");
+                      recentlyMoved = droppableBelow.getAttribute("data-recently-moved");
+                    }
+                  }
+                  if (Y == 5 && recentlyMoved) enpassant = true;
+                  if (belowPieceColor == !pieceColor && oppMoves == 1 && enpassant) {
+                    console.log("cool");
+                    squareRemove(tempHint);
+                    tempHint.classList.add("box", "targeted", "moves", "square-" + (X + j) + "" + (Y + i));
+                    tempHint.setAttribute("data-enpassant", true);
+                  } else tempHint.remove();
                 }
               }
             }
@@ -754,7 +849,110 @@ chessPieces.forEach((piece) => {
 
       // check if there is an element below the mouse and do stuff according
       if (elemBelow == null) {
-        return false;
+        return;
+      } else if (elemBelow.getAttribute("data-castling") == "left") {
+        // removes and logs the piece below the mouse
+        squareRemove(piece);
+        piece.classList.add("square-" + (roundDownToNearest1(ogPosX) - 2) + "" + roundDownToNearest1(ogPosY));
+        selectedPiece2.classList.remove("visually-hidden");
+        squareRemove(selectedPiece2);
+        selectedPiece2.classList.add("square-" + (roundDownToNearest1(ogPosX) - 2) + "" + roundDownToNearest1(ogPosY));
+        const tempHint = document.createElement("div");
+        board.appendChild(tempHint);
+        tempHint.classList.add("box", "moves", "square-" + 1 + "" + roundDownToNearest1(ogPosY));
+        const hintBounds = tempHint.getBoundingClientRect();
+        let hintPosX = hintBounds.right - (hintBounds.right - hintBounds.left) / 2;
+        let hintPosY = hintBounds.bottom - (hintBounds.bottom - hintBounds.top) / 2;
+        const hints = document.querySelectorAll(".moves");
+        hints.forEach((hint) => {
+          hint.hidden = true;
+        });
+        target = document.elementFromPoint(hintPosX, hintPosY);
+        hints.forEach((hint) => {
+          hint.hidden = false;
+        });
+        squareRemove(target);
+        target.classList.add("square-" + 4 + "" + roundDownToNearest1(ogPosY));
+        hints.forEach((hint) => {
+          hint.remove();
+        });
+        moves++;
+        piece.setAttribute("data-moves", moves);
+        chessPieces.forEach((piece) => {
+          piece.removeAttribute("data-recently-moved");
+        });
+        piece.setAttribute("data-recently-moved", true);
+        audioPlayer.src = chessCastleAudio[i];
+        audioPlayer.play();
+      } else if (elemBelow.getAttribute("data-castling") == "right") {
+        // removes and logs the piece below the mouse
+        squareRemove(piece);
+        piece.classList.add("square-" + (roundDownToNearest1(ogPosX) + 2) + "" + roundDownToNearest1(ogPosY));
+        selectedPiece2.classList.remove("visually-hidden");
+        squareRemove(selectedPiece2);
+        selectedPiece2.classList.add("square-" + (roundDownToNearest1(ogPosX) + 2) + "" + roundDownToNearest1(ogPosY));
+        const tempHint = document.createElement("div");
+        board.appendChild(tempHint);
+        tempHint.classList.add("box", "moves", "square-" + 8 + "" + roundDownToNearest1(ogPosY));
+        const hintBounds = tempHint.getBoundingClientRect();
+        let hintPosX = hintBounds.right - (hintBounds.right - hintBounds.left) / 2;
+        let hintPosY = hintBounds.bottom - (hintBounds.bottom - hintBounds.top) / 2;
+        const hints = document.querySelectorAll(".moves");
+        hints.forEach((hint) => {
+          hint.hidden = true;
+        });
+        target = document.elementFromPoint(hintPosX, hintPosY);
+        hints.forEach((hint) => {
+          hint.hidden = false;
+        });
+        squareRemove(target);
+        target.classList.add("square-" + 6 + "" + roundDownToNearest1(ogPosY));
+        hints.forEach((hint) => {
+          hint.remove();
+        });
+        moves++;
+        piece.setAttribute("data-moves", moves);
+        chessPieces.forEach((piece) => {
+          piece.removeAttribute("data-recently-moved");
+        });
+        piece.setAttribute("data-recently-moved", true);
+        audioPlayer.src = chessCastleAudio[i];
+        audioPlayer.play();
+      } else if (elemBelow.getAttribute("data-enpassant")) {
+        // removes and logs the piece below the mouse
+        const tempHint = document.createElement("div");
+        board.appendChild(tempHint);
+        if (pieceColor) {
+          tempHint.classList.add("box", "moves", "square-" + roundDownToNearest1(lastPosX) + "" + (roundDownToNearest1(lastPosY) + 1));
+        } else {
+          tempHint.classList.add("box", "moves", "square-" + roundDownToNearest1(lastPosX) + "" + (roundDownToNearest1(lastPosY) - 1));
+        }
+        const hintBounds = tempHint.getBoundingClientRect();
+        let hintPosX = hintBounds.right - (hintBounds.right - hintBounds.left) / 2;
+        let hintPosY = hintBounds.bottom - (hintBounds.bottom - hintBounds.top) / 2;
+        tempHint.hidden = true;
+        target = document.elementFromPoint(hintPosX, hintPosY);
+        tempHint.hidden = false;
+        console.log("Removed Piece = ");
+        console.log(target);
+        target.classList.add("visually-hidden");
+        squareRemove(piece);
+        piece.classList.add("square-" + roundDownToNearest1(lastPosX) + "" + roundDownToNearest1(lastPosY));
+        selectedPiece2.classList.remove("visually-hidden");
+        squareRemove(selectedPiece2);
+        selectedPiece2.classList.add("square-" + roundDownToNearest1(lastPosX) + "" + roundDownToNearest1(lastPosY));
+        const hints = document.querySelectorAll(".moves");
+        hints.forEach((hint) => {
+          hint.remove();
+        });
+        moves++;
+        piece.setAttribute("data-moves", moves);
+        chessPieces.forEach((piece) => {
+          piece.removeAttribute("data-recently-moved");
+        });
+        piece.setAttribute("data-recently-moved", true);
+        audioPlayer.src = chessTakeAudio[i];
+        audioPlayer.play();
       } else if (elemBelow.classList.contains("targeted")) {
         // removes and logs the piece below the mouse
         console.log("Removed Piece = ");
@@ -771,6 +969,10 @@ chessPieces.forEach((piece) => {
         });
         moves++;
         piece.setAttribute("data-moves", moves);
+        chessPieces.forEach((piece) => {
+          piece.removeAttribute("data-recently-moved");
+        });
+        piece.setAttribute("data-recently-moved", true);
         audioPlayer.src = chessTakeAudio[i];
         audioPlayer.play();
       } else if (elemBelow.classList.contains("moves")) {
@@ -785,6 +987,10 @@ chessPieces.forEach((piece) => {
         });
         moves++;
         piece.setAttribute("data-moves", moves);
+        chessPieces.forEach((piece) => {
+          piece.removeAttribute("data-recently-moved");
+        });
+        piece.setAttribute("data-recently-moved", true);
         audioPlayer.src = chessMoveAudio[i];
         audioPlayer.play();
       } else {
@@ -844,7 +1050,6 @@ flipBtn.addEventListener("click", flipBoard);
 
 // turns on move
 // make the moves class an after element
-// castling & en passant
 
 // andere soorten interactie (text veld)
 // log moves
@@ -854,3 +1059,6 @@ flipBtn.addEventListener("click", flipBoard);
 // MAYBE:
 // add mouseclicking support (click on hints)
 // add checks
+
+// BUGS:
+// when holding piece offscreen game breaks
