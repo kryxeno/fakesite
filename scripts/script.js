@@ -305,7 +305,9 @@ chessPieces.forEach((piece) => {
     function drawMoves() {
       // calculates moves
       // ROOK MOVES
-      if (pieceType == "rook") {
+      if (pieceColor != !playingSide && !flip) {
+      } else if (pieceColor != playingSide && flip) {
+      } else if (pieceType == "rook") {
         let X = roundDownToNearest1(ogPosX);
         let Y = roundDownToNearest1(ogPosY);
         for (let i = 1; i < 9; i++) {
@@ -848,8 +850,6 @@ chessPieces.forEach((piece) => {
       // check if there is an element below the mouse and do stuff according
       if (elemBelow == null) {
         return;
-      } else if (pieceColor != !playingSide && !flip) {
-      } else if (pieceColor != playingSide && flip) {
       } else if (elemBelow.getAttribute("data-castling") == "left") {
         // removes and logs the piece below the mouse
         squareRemove(piece);
