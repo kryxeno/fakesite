@@ -222,6 +222,12 @@ chessPieces.forEach((piece) => {
   let pieceType = null;
   let moves = 0;
 
+  // determines black or white piece (pieceColor)
+  pieceColor = colorValidation(piece);
+
+  // determines black or white piece (pieceColor)
+  pieceType = pieceValidation(piece);
+
   piece.onmousedown = function (event) {
     // getting board bounds
     const bounds = board.getBoundingClientRect();
@@ -231,6 +237,8 @@ chessPieces.forEach((piece) => {
 
     // check if piece has moved
     console.log(moves);
+
+    pieceColor = colorValidation(piece);
 
     // storing original position
     ogPosX = ((event.clientX - bounds.left) / ((bounds.right - bounds.left) / 100)) * 8;
@@ -266,6 +274,13 @@ chessPieces.forEach((piece) => {
     // drawing possible moves
     drawMoves();
 
+    // log piece details
+    if (pieceColor) {
+      console.log("black" + " " + pieceType);
+    } else {
+      console.log("white" + " " + pieceType);
+    }
+
     // https://codepen.io/DevilSAM/pen/ZNoByE
     // wont actually be used
     // it is just for visual representation
@@ -288,23 +303,6 @@ chessPieces.forEach((piece) => {
     ];
 
     function drawMoves() {
-      // resets piece details
-      pieceColor = null;
-      pieceType = null;
-
-      // determines black or white piece (pieceColor)
-      pieceColor = colorValidation(piece);
-
-      // determines black or white piece (pieceColor)
-      pieceType = pieceValidation(piece);
-
-      // log piece details
-      if (pieceColor) {
-        console.log("black" + " " + pieceType);
-      } else {
-        console.log("white" + " " + pieceType);
-      }
-
       // calculates moves
       // ROOK MOVES
       if (pieceType == "rook") {
@@ -850,6 +848,8 @@ chessPieces.forEach((piece) => {
       // check if there is an element below the mouse and do stuff according
       if (elemBelow == null) {
         return;
+      } else if (pieceColor != !playingSide && !flip) {
+      } else if (pieceColor != playingSide && flip) {
       } else if (elemBelow.getAttribute("data-castling") == "left") {
         // removes and logs the piece below the mouse
         squareRemove(piece);
@@ -884,6 +884,8 @@ chessPieces.forEach((piece) => {
         piece.setAttribute("data-recently-moved", true);
         audioPlayer.src = chessCastleAudio[i];
         audioPlayer.play();
+        disableSide();
+        flipBoard();
       } else if (elemBelow.getAttribute("data-castling") == "right") {
         // removes and logs the piece below the mouse
         squareRemove(piece);
@@ -918,6 +920,8 @@ chessPieces.forEach((piece) => {
         piece.setAttribute("data-recently-moved", true);
         audioPlayer.src = chessCastleAudio[i];
         audioPlayer.play();
+        disableSide();
+        flipBoard();
       } else if (elemBelow.getAttribute("data-enpassant")) {
         // removes and logs the piece below the mouse
         const tempHint = document.createElement("div");
@@ -953,6 +957,8 @@ chessPieces.forEach((piece) => {
         piece.setAttribute("data-recently-moved", true);
         audioPlayer.src = chessTakeAudio[i];
         audioPlayer.play();
+        disableSide();
+        flipBoard();
       } else if (elemBelow.classList.contains("targeted")) {
         // removes and logs the piece below the mouse
         console.log("Removed Piece = ");
@@ -975,6 +981,8 @@ chessPieces.forEach((piece) => {
         piece.setAttribute("data-recently-moved", true);
         audioPlayer.src = chessTakeAudio[i];
         audioPlayer.play();
+        disableSide();
+        flipBoard();
       } else if (elemBelow.classList.contains("moves")) {
         squareRemove(piece);
         piece.classList.add("square-" + roundDownToNearest1(lastPosX) + "" + roundDownToNearest1(lastPosY));
@@ -993,6 +1001,8 @@ chessPieces.forEach((piece) => {
         piece.setAttribute("data-recently-moved", true);
         audioPlayer.src = chessMoveAudio[i];
         audioPlayer.play();
+        disableSide();
+        flipBoard();
       } else {
         //do nothing
       }
@@ -1005,7 +1015,13 @@ chessPieces.forEach((piece) => {
   };
 });
 
+let flipping = false;
 function flipBoard() {
+  if (!flipping) return;
+  const hints = document.querySelectorAll(".moves");
+  hints.forEach((hint) => {
+    hint.remove();
+  });
   flip = !flip;
   function invert(e) {
     for (let i = e.classList.length - 1; i >= 0; i--) {
@@ -1042,15 +1058,42 @@ function flipBoard() {
   });
 }
 
-flipBtn.addEventListener("click", flipBoard);
+function flipSwitch() {
+  if (flipping) {
+    flipBtn.innerHTML = "Board will NOT flip on move";
+  } else {
+    flipBtn.innerHTML = "Board will flip on move";
+  }
+  flipping = !flipping;
+}
 
-// flipBoard();
+flipBtn.addEventListener("click", flipSwitch);
+
+let playingSide = false;
+function disableSide() {
+  playingSide = !playingSide;
+  chessPieces.forEach((piece) => {
+    let localColor = colorValidation(piece);
+    for (let i = piece.classList.length - 1; i >= 0; i--) {
+      const className = piece.classList[i];
+      if (className.startsWith("b")) {
+        localColor = false;
+      } else if (className.startsWith("w")) {
+        localColor = true;
+      }
+    }
+    if (localColor) {
+      piece.setAttribute("draggable", playingSide);
+    } else if (!localColor) {
+      piece.setAttribute("draggable", !playingSide);
+    }
+  });
+}
+
+disableSide();
+
 // TO-DO:
-// disable inactive side xxxxxxxxxxxxxx
-
-// turns on move
 // make the moves class an after element
-
 // andere soorten interactie (text veld)
 // log moves
 
