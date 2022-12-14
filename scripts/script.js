@@ -193,7 +193,7 @@ const chessPieces = document.querySelectorAll(".piece");
 const hover = document.querySelector(".hover");
 const selectedPiece = document.querySelector(".active");
 const selectedPiece2 = document.querySelector(".active2");
-const board = document.querySelector("main > section:first-child");
+const board = document.querySelector(".chessboard");
 const flipBtn = document.querySelector(".flip-btn");
 
 // audio
@@ -886,6 +886,7 @@ chessPieces.forEach((piece) => {
         audioPlayer.play();
         disableSide();
         flipBoard();
+        recordMove(piece, ogPosX, ogPosY, lastPosX, lastPosY, false);
       } else if (elemBelow.getAttribute("data-castling") == "right") {
         // removes and logs the piece below the mouse
         squareRemove(piece);
@@ -922,6 +923,7 @@ chessPieces.forEach((piece) => {
         audioPlayer.play();
         disableSide();
         flipBoard();
+        recordMove(piece, ogPosX, ogPosY, lastPosX, lastPosY, false);
       } else if (elemBelow.getAttribute("data-enpassant")) {
         // removes and logs the piece below the mouse
         const tempHint = document.createElement("div");
@@ -959,6 +961,7 @@ chessPieces.forEach((piece) => {
         audioPlayer.play();
         disableSide();
         flipBoard();
+        recordMove(piece, ogPosX, ogPosY, lastPosX, lastPosY, true);
       } else if (elemBelow.classList.contains("targeted")) {
         // removes and logs the piece below the mouse
         console.log("Removed Piece = ");
@@ -983,6 +986,7 @@ chessPieces.forEach((piece) => {
         audioPlayer.play();
         disableSide();
         flipBoard();
+        recordMove(piece, ogPosX, ogPosY, lastPosX, lastPosY, true);
       } else if (elemBelow.classList.contains("moves")) {
         squareRemove(piece);
         piece.classList.add("square-" + roundDownToNearest1(lastPosX) + "" + roundDownToNearest1(lastPosY));
@@ -1003,6 +1007,7 @@ chessPieces.forEach((piece) => {
         audioPlayer.play();
         disableSide();
         flipBoard();
+        recordMove(piece, ogPosX, ogPosY, lastPosX, lastPosY, false);
       } else {
         //do nothing
       }
@@ -1039,7 +1044,7 @@ function flipBoard() {
   });
   invert(selectedPiece);
   invert(selectedPiece2);
-  const boardCoords = document.querySelectorAll("main > section:first-child svg text");
+  const boardCoords = document.querySelectorAll(".chessboard svg text");
   boardCoords.forEach((coord) => {
     let text = coord.innerHTML;
     if (isNaN(text)) {
@@ -1091,6 +1096,69 @@ function disableSide() {
 }
 
 disableSide();
+let moveNumber = 1;
+const whiteMove = document.querySelector(".white-moves");
+const blackMove = document.querySelector(".black-moves");
+function recordMove(e, ogX, ogY, X, Y, pieceTaken) {
+  let pos;
+  pos = getNotation(e, ogX, ogY, X, Y, pieceTaken);
+  if (moveNumber % 2 != 0) {
+    const moveLog = document.createElement("li");
+    whiteMove.appendChild(moveLog);
+    moveLog.innerHTML = pos;
+  } else {
+    const moveLog = document.createElement("li");
+    blackMove.appendChild(moveLog);
+    moveLog.innerHTML = pos;
+  }
+  moveNumber++;
+}
+
+function getNotation(e, ogX, ogY, X, Y, taken) {
+  let pieceName = null;
+  let pieceSquare = null;
+  for (let i = e.classList.length - 1; i >= 0; i--) {
+    const className = e.classList[i];
+    if (className.endsWith("r")) {
+      pieceName = "<span>Ľ</span>" + "R";
+    } else if (className.endsWith("n")) {
+      pieceName = "<span>Ç</span>" + "N";
+    } else if (className.endsWith("b")) {
+      pieceName = "<span>Ă</span>" + "B";
+    } else if (className.endsWith("k")) {
+      pieceName = "<span>Ą</span>" + "K";
+    } else if (className.endsWith("q")) {
+      pieceName = "<span>Į</span>" + "Q";
+    } else if (className.endsWith("p")) {
+      pieceName = "";
+      if (taken) {
+        if (roundDownToNearest1(ogX) == 1) pieceName = "a";
+        if (roundDownToNearest1(ogX) == 2) pieceName = "b";
+        if (roundDownToNearest1(ogX) == 3) pieceName = "c";
+        if (roundDownToNearest1(ogX) == 4) pieceName = "d";
+        if (roundDownToNearest1(ogX) == 5) pieceName = "e";
+        if (roundDownToNearest1(ogX) == 6) pieceName = "f";
+        if (roundDownToNearest1(ogX) == 7) pieceName = "g";
+        if (roundDownToNearest1(ogX) == 8) pieceName = "h";
+      }
+    }
+  }
+  if (roundDownToNearest1(X) == 1) pieceSquare = "a" + roundDownToNearest1(Y);
+  if (roundDownToNearest1(X) == 2) pieceSquare = "b" + roundDownToNearest1(Y);
+  if (roundDownToNearest1(X) == 3) pieceSquare = "c" + roundDownToNearest1(Y);
+  if (roundDownToNearest1(X) == 4) pieceSquare = "d" + roundDownToNearest1(Y);
+  if (roundDownToNearest1(X) == 5) pieceSquare = "e" + roundDownToNearest1(Y);
+  if (roundDownToNearest1(X) == 6) pieceSquare = "f" + roundDownToNearest1(Y);
+  if (roundDownToNearest1(X) == 7) pieceSquare = "g" + roundDownToNearest1(Y);
+  if (roundDownToNearest1(X) == 8) pieceSquare = "h" + roundDownToNearest1(Y);
+  if (taken) {
+    return pieceName + "x" + pieceSquare;
+  } else {
+    return pieceName + pieceSquare;
+  }
+}
+
+function getPiece() {}
 
 // TO-DO:
 // make the moves class an after element

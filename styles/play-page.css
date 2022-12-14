@@ -1,0 +1,244 @@
+/**************/
+/* Chessboard */
+/**************/
+
+.chessboard {
+  width: 100%;
+  max-width: 62rem;
+  aspect-ratio: 1/1;
+  display: flex;
+  background-image: url(../images/100.png);
+  background-size: cover;
+  position: relative;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  order: 2;
+}
+
+.chessboard > svg {
+  position: absolute;
+  inset: 0;
+  user-select: none;
+}
+
+.chessboard > svg text {
+  font-size: 0.3rem;
+  font-weight: 600;
+}
+
+.chessboard > svg text:nth-child(odd) {
+  fill: #769656;
+}
+
+.chessboard > svg text:nth-child(even) {
+  fill: #eeeed2;
+}
+
+.box,
+.piece {
+  position: absolute;
+  bottom: 0;
+  left: 0%;
+  height: 12.5%;
+  width: 12.5%;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+div.targeted {
+  padding: 0;
+  border-radius: 0%;
+  background-color: transparent;
+}
+
+.targeted::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border: 0.6rem solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+}
+
+.active,
+.active2 {
+  background-color: rgba(255, 255, 0, 0.5);
+}
+
+.hover {
+  border: 4px solid rgba(255, 255, 255, 0.65);
+  outline: 1px solid rgba(255, 255, 255, 0.65);
+}
+
+.moves {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  background-clip: content-box;
+  box-sizing: border-box;
+  padding: 4.2%;
+  z-index: 10;
+
+  /* temporary debug stuff */
+  /* pointer-events: none; */
+  cursor: pointer;
+  /* border-radius: 0%;
+  background-color: rgb(212, 0, 212); */
+}
+
+.chessboard ul li:hover {
+  cursor: grab;
+}
+
+.chessboard ul li:active {
+  opacity: 1;
+  cursor: grabbing;
+}
+
+.br {
+  background-image: url("../images/br.png");
+}
+
+.bn {
+  background-image: url("../images/bn.png");
+}
+
+.bb {
+  background-image: url("../images/bb.png");
+}
+
+.bk {
+  background-image: url("../images/bk.png");
+}
+
+.bq {
+  background-image: url("../images/bq.png");
+}
+
+.bp {
+  background-image: url("../images/bp.png");
+}
+
+.wr {
+  background-image: url("../images/wr.png");
+}
+
+.wn {
+  background-image: url("../images/wn.png");
+}
+
+.wb {
+  background-image: url("../images/wb.png");
+}
+
+.wk {
+  background-image: url("../images/wk.png");
+}
+
+.wq {
+  background-image: url("../images/wq.png");
+}
+
+.wp {
+  background-image: url("../images/wp.png");
+}
+
+.flip-btn {
+  font-family: var(--primary-font);
+  padding: var(--side-padding) 10rem;
+  padding: 1rem var(--side-padding);
+}
+main > section {
+  display: flex;
+  justify-content: center;
+}
+
+main section > section:nth-child(1),
+main section > section:nth-child(2) {
+  width: 25%;
+  min-width: 20%;
+  overflow: auto;
+  background-color: var(--global-background);
+  border-radius: 0.5rem;
+  max-width: 30rem;
+}
+
+main section > section:nth-child(1) {
+  order: 1;
+  margin-right: var(--side-padding);
+}
+
+main section > section:nth-child(1) h2,
+main section > section:nth-child(2) h2 {
+  padding-left: 2rem;
+  padding: 0.5rem 2rem;
+  background-color: white;
+  color: black;
+  width: 100%;
+}
+
+main section > section div {
+  height: 3rem;
+  background-color: var(--form-background);
+  border-bottom: 0.2rem solid var(--form-background);
+}
+
+main section > section ol {
+  margin-top: 1rem;
+  padding-left: 3.5rem;
+  margin-right: auto;
+}
+
+main section > section ol li span:first-of-type {
+  font-size: 2.2rem;
+  margin-left: -0.1rem;
+}
+
+main section > section ol li::marker {
+  font-weight: 400;
+  font-size: 1.4rem;
+}
+
+main section > section ol li {
+  list-style: decimal;
+  color: var(--global-color-high);
+  font-family: var(--primary-font);
+  font-weight: 700;
+  font-size: 1.6rem;
+  padding: 0.2rem 0;
+}
+
+main section > section:nth-child(2) {
+  order: 3;
+  margin-left: var(--side-padding);
+}
+
+main section > section:nth-child(2) h2 {
+  padding-left: 2rem;
+  padding: 0.5rem 2rem;
+  background-color: black;
+  color: white;
+  width: 100%;
+}
+
+@media screen and (max-width: 58em) {
+  main section {
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  main section > section:nth-child(1),
+  main section > section:nth-child(2) {
+    order: 3;
+    flex: 1;
+    height: 50rem;
+    margin: 0;
+    margin-top: 1rem;
+    min-width: 30%;
+  }
+  main section > section:nth-child(2) {
+    order: 4;
+  }
+  .chessboard {
+    width: 100%;
+  }
+}

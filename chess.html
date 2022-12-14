@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Home - Fake Chess.com</title>
     <link href="styles/style.css" rel="stylesheet" />
+    <link href="styles/play-page.css" rel="stylesheet" />
     <link id="squares" href="styles/squares.css" rel="stylesheet" />
     <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+    <link rel="stylesheet" href="https://use.typekit.net/wjy7xkb.css" />
   </head>
   <body>
     <header>
@@ -91,96 +93,108 @@
     </header>
     <main id="main-content">
       <section>
-        <svg viewBox="0 0 100 100">
-          <text x="0.75" y="3.5">8</text>
-          <text x="0.75" y="15.75">7</text>
-          <text x="0.75" y="28.25">6</text>
-          <text x="0.75" y="40.75">5</text>
-          <text x="0.75" y="53.25">4</text>
-          <text x="0.75" y="65.75">3</text>
-          <text x="0.75" y="78.25">2</text>
-          <text x="0.75" y="90.75">1</text>
-          <text x="97.5" y="99">h</text>
-          <text x="85" y="99">g</text>
-          <text x="72.5" y="99">f</text>
-          <text x="60" y="99">e</text>
-          <text x="47.5" y="99">d</text>
-          <text x="35" y="99">c</text>
-          <text x="22.5" y="99">b</text>
-          <text x="10" y="99">a</text>
-        </svg>
-        <div class="box active square-42 visually-hidden"></div>
-        <div class="box active2 square-46 visually-hidden"></div>
-        <div class="box hover square-44 visually-hidden"></div>
-        <ul>
-          <!-- Rook 1 Black -->
-          <li draggable="true" class="piece br square-88"></li>
-          <!-- Knight 1 Black -->
-          <li draggable="true" class="piece bn square-78"></li>
-          <!-- Bishop 1 Black -->
-          <li draggable="true" class="piece bb square-68"></li>
-          <!-- King Black -->
-          <li draggable="true" class="piece bk square-58"></li>
-          <!-- Queen Black -->
-          <li draggable="true" class="piece bq square-48"></li>
-          <!-- Bishop 2 Black -->
-          <li draggable="true" class="piece bb square-38"></li>
-          <!-- Knight 2 Black -->
-          <li draggable="true" class="piece bn square-28"></li>
-          <!-- Rook 2 Black -->
-          <li draggable="true" class="piece br square-18"></li>
-          <!-- Pawn 8 Black -->
-          <li draggable="true" class="piece bp square-87"></li>
-          <!-- Pawn 7 Black -->
-          <li draggable="true" class="piece bp square-77"></li>
-          <!-- Pawn 6 Black -->
-          <li draggable="true" class="piece bp square-67"></li>
-          <!-- Pawn 5 Black -->
-          <li draggable="true" class="piece bp square-57"></li>
-          <!-- Pawn 4 Black -->
-          <li draggable="true" class="piece bp square-47"></li>
-          <!-- Pawn 3 Black -->
-          <li draggable="true" class="piece bp square-37"></li>
-          <!-- Pawn 2 Black -->
-          <li draggable="true" class="piece bp square-27"></li>
-          <!-- Pawn 1 Black -->
-          <li draggable="true" class="piece bp square-17"></li>
-        </ul>
-        <ul>
-          <!-- Rook 1 White -->
-          <li draggable="true" class="piece wr square-11"></li>
-          <!-- Horse 1 White -->
-          <li draggable="true" class="piece wn square-21"></li>
-          <!-- Bishop 1 White -->
-          <li draggable="true" class="piece wb square-31"></li>
-          <!-- King White -->
-          <li draggable="true" class="piece wk square-51"></li>
-          <!-- Queen White -->
-          <li draggable="true" class="piece wq square-41"></li>
-          <!-- Bishop 2 White -->
-          <li draggable="true" class="piece wb square-61"></li>
-          <!-- Horse 2 White -->
-          <li draggable="true" class="piece wn square-71"></li>
-          <!-- Rook 2 White -->
-          <li draggable="true" class="piece wr square-81"></li>
-          <!-- Pawn 8 White -->
-          <li draggable="true" class="piece wp square-82"></li>
-          <!-- Pawn 7 White -->
-          <li draggable="true" class="piece wp square-72"></li>
-          <!-- Pawn 6 White -->
-          <li draggable="true" class="piece wp square-62"></li>
-          <!-- Pawn 5 White -->
-          <li draggable="true" class="piece wp square-52"></li>
-          <!-- Pawn 4 White -->
-          <li draggable="true" class="piece wp square-42"></li>
-          <!-- Pawn 3 White -->
-          <li draggable="true" class="piece wp square-32"></li>
-          <!-- Pawn 2 White -->
-          <li draggable="true" class="piece wp square-22"></li>
-          <!-- Pawn 1 White -->
-          <li draggable="true" class="piece wp square-12"></li>
-        </ul>
-        <!-- move hints -->
+        <section>
+          <h2>Player 1</h2>
+          <div></div>
+          <ol class="white-moves"></ol>
+        </section>
+        <section>
+          <h2>Player 2</h2>
+          <div></div>
+          <ol class="black-moves"></ol>
+        </section>
+        <section class="chessboard">
+          <svg viewBox="0 0 100 100">
+            <text x="0.75" y="3.5">8</text>
+            <text x="0.75" y="15.75">7</text>
+            <text x="0.75" y="28.25">6</text>
+            <text x="0.75" y="40.75">5</text>
+            <text x="0.75" y="53.25">4</text>
+            <text x="0.75" y="65.75">3</text>
+            <text x="0.75" y="78.25">2</text>
+            <text x="0.75" y="90.75">1</text>
+            <text x="97.5" y="99">h</text>
+            <text x="85" y="99">g</text>
+            <text x="72.5" y="99">f</text>
+            <text x="60" y="99">e</text>
+            <text x="47.5" y="99">d</text>
+            <text x="35" y="99">c</text>
+            <text x="22.5" y="99">b</text>
+            <text x="10" y="99">a</text>
+          </svg>
+          <div class="box active square-42 visually-hidden"></div>
+          <div class="box active2 square-46 visually-hidden"></div>
+          <div class="box hover square-44 visually-hidden"></div>
+          <ul>
+            <!-- Rook 1 Black -->
+            <li draggable="true" class="piece br square-88"></li>
+            <!-- Knight 1 Black -->
+            <li draggable="true" class="piece bn square-78"></li>
+            <!-- Bishop 1 Black -->
+            <li draggable="true" class="piece bb square-68"></li>
+            <!-- King Black -->
+            <li draggable="true" class="piece bk square-58"></li>
+            <!-- Queen Black -->
+            <li draggable="true" class="piece bq square-48"></li>
+            <!-- Bishop 2 Black -->
+            <li draggable="true" class="piece bb square-38"></li>
+            <!-- Knight 2 Black -->
+            <li draggable="true" class="piece bn square-28"></li>
+            <!-- Rook 2 Black -->
+            <li draggable="true" class="piece br square-18"></li>
+            <!-- Pawn 8 Black -->
+            <li draggable="true" class="piece bp square-87"></li>
+            <!-- Pawn 7 Black -->
+            <li draggable="true" class="piece bp square-77"></li>
+            <!-- Pawn 6 Black -->
+            <li draggable="true" class="piece bp square-67"></li>
+            <!-- Pawn 5 Black -->
+            <li draggable="true" class="piece bp square-57"></li>
+            <!-- Pawn 4 Black -->
+            <li draggable="true" class="piece bp square-47"></li>
+            <!-- Pawn 3 Black -->
+            <li draggable="true" class="piece bp square-37"></li>
+            <!-- Pawn 2 Black -->
+            <li draggable="true" class="piece bp square-27"></li>
+            <!-- Pawn 1 Black -->
+            <li draggable="true" class="piece bp square-17"></li>
+          </ul>
+          <ul>
+            <!-- Rook 1 White -->
+            <li draggable="true" class="piece wr square-11"></li>
+            <!-- Horse 1 White -->
+            <li draggable="true" class="piece wn square-21"></li>
+            <!-- Bishop 1 White -->
+            <li draggable="true" class="piece wb square-31"></li>
+            <!-- King White -->
+            <li draggable="true" class="piece wk square-51"></li>
+            <!-- Queen White -->
+            <li draggable="true" class="piece wq square-41"></li>
+            <!-- Bishop 2 White -->
+            <li draggable="true" class="piece wb square-61"></li>
+            <!-- Horse 2 White -->
+            <li draggable="true" class="piece wn square-71"></li>
+            <!-- Rook 2 White -->
+            <li draggable="true" class="piece wr square-81"></li>
+            <!-- Pawn 8 White -->
+            <li draggable="true" class="piece wp square-82"></li>
+            <!-- Pawn 7 White -->
+            <li draggable="true" class="piece wp square-72"></li>
+            <!-- Pawn 6 White -->
+            <li draggable="true" class="piece wp square-62"></li>
+            <!-- Pawn 5 White -->
+            <li draggable="true" class="piece wp square-52"></li>
+            <!-- Pawn 4 White -->
+            <li draggable="true" class="piece wp square-42"></li>
+            <!-- Pawn 3 White -->
+            <li draggable="true" class="piece wp square-32"></li>
+            <!-- Pawn 2 White -->
+            <li draggable="true" class="piece wp square-22"></li>
+            <!-- Pawn 1 White -->
+            <li draggable="true" class="piece wp square-12"></li>
+          </ul>
+          <!-- move hints -->
+        </section>
       </section>
       <button class="flip-btn">Board will NOT flip on move</button>
     </main>
