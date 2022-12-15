@@ -3,8 +3,6 @@
 /**************/
 
 .chessboard {
-  width: 100%;
-  max-width: 62rem;
   aspect-ratio: 1/1;
   display: flex;
   background-image: url(../images/100.png);
@@ -12,7 +10,6 @@
   position: relative;
   border-radius: 0.5rem;
   overflow: hidden;
-  order: 2;
 }
 
 .chessboard > svg {
@@ -71,11 +68,31 @@ div.targeted {
 }
 
 .moves {
+  background-color: transparent;
+  /* border-radius: 50%; */
+  background-clip: content-box;
+  box-sizing: border-box;
+  /* padding: 4.2%; */
+  z-index: 10;
+
+  /* temporary debug stuff */
+  /* pointer-events: none; */
+  cursor: pointer;
+  /* border-radius: 0%;
+  background-color: rgb(212, 0, 212); */
+}
+
+.moves::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  inset: 0;
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 50%;
   background-clip: content-box;
   box-sizing: border-box;
-  padding: 4.2%;
+  padding: 34.2%;
   z-index: 10;
 
   /* temporary debug stuff */
@@ -142,11 +159,6 @@ div.targeted {
   background-image: url("../images/wp.png");
 }
 
-.flip-btn {
-  font-family: var(--primary-font);
-  padding: var(--side-padding) 10rem;
-  padding: 1rem var(--side-padding);
-}
 main > section {
   display: flex;
   justify-content: center;
@@ -220,8 +232,55 @@ main section > section:nth-child(2) h2 {
   width: 100%;
 }
 
+main > section > div {
+  max-width: 62rem;
+  width: 100%;
+  order: 2;
+}
+
+main section div section:last-of-type {
+  height: 7rem;
+  background-color: var(--global-background);
+  border-radius: 0.5rem;
+  margin-top: var(--side-padding);
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+main section div section:last-of-type button {
+  background-color: var(--form-background);
+  padding: 0.8rem 0;
+  flex: 1;
+  border-radius: 0.5rem;
+  transition: 0.3s;
+}
+
+main section div section:last-of-type button:nth-child(2) {
+  color: #df3f3f;
+}
+
+main section div section:last-of-type button:nth-child(2).flipped {
+  color: #3fdf4c;
+}
+
+main section div section:last-of-type button:hover {
+  background-color: var(--form-color);
+}
+
+main section div section:last-of-type form {
+  margin: 0;
+}
+
+main section div section:last-of-type form input {
+  font-size: 2rem;
+  padding: 2.25rem 0 2.25rem 1rem;
+}
+
 @media screen and (max-width: 58em) {
-  main section {
+  main > section {
     gap: 1rem;
     flex-wrap: wrap;
   }
@@ -237,8 +296,5 @@ main section > section:nth-child(2) h2 {
   }
   main section > section:nth-child(2) {
     order: 4;
-  }
-  .chessboard {
-    width: 100%;
   }
 }

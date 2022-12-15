@@ -886,7 +886,7 @@ chessPieces.forEach((piece) => {
         audioPlayer.play();
         disableSide();
         flipBoard();
-        recordMove(piece, ogPosX, ogPosY, lastPosX, lastPosY, false);
+        recordMove(piece, ogPosX, ogPosY, lastPosX, lastPosY, false, 2);
       } else if (elemBelow.getAttribute("data-castling") == "right") {
         // removes and logs the piece below the mouse
         squareRemove(piece);
@@ -923,7 +923,7 @@ chessPieces.forEach((piece) => {
         audioPlayer.play();
         disableSide();
         flipBoard();
-        recordMove(piece, ogPosX, ogPosY, lastPosX, lastPosY, false);
+        recordMove(piece, ogPosX, ogPosY, lastPosX, lastPosY, false, 1);
       } else if (elemBelow.getAttribute("data-enpassant")) {
         // removes and logs the piece below the mouse
         const tempHint = document.createElement("div");
@@ -1064,11 +1064,9 @@ function flipBoard() {
 }
 
 function flipSwitch() {
-  if (flipping) {
-    flipBtn.innerHTML = "Board will NOT flip on move";
-  } else {
-    flipBtn.innerHTML = "Board will flip on move";
-  }
+  flipBtn.classList.toggle("flipped");
+  // flipBtn.innerHTML = "Board will flip on move";
+
   flipping = !flipping;
 }
 
@@ -1099,9 +1097,14 @@ disableSide();
 let moveNumber = 1;
 const whiteMove = document.querySelector(".white-moves");
 const blackMove = document.querySelector(".black-moves");
-function recordMove(e, ogX, ogY, X, Y, pieceTaken) {
+function recordMove(e, ogX, ogY, X, Y, pieceTaken, castle) {
   let pos;
   pos = getNotation(e, ogX, ogY, X, Y, pieceTaken);
+  if (castle == 1) {
+    pos = "O-O";
+  } else if (castle == 2) {
+    pos = "O-O-O";
+  }
   if (moveNumber % 2 != 0) {
     const moveLog = document.createElement("li");
     whiteMove.appendChild(moveLog);
@@ -1120,15 +1123,25 @@ function getNotation(e, ogX, ogY, X, Y, taken) {
   for (let i = e.classList.length - 1; i >= 0; i--) {
     const className = e.classList[i];
     if (className.endsWith("r")) {
-      pieceName = "<span>Ľ</span>" + "R";
+      if (moveNumber % 2 == 0) {
+        pieceName = "<span>Ļ</span>" + "R";
+      } else pieceName = "<span>Ľ</span>" + "R";
     } else if (className.endsWith("n")) {
-      pieceName = "<span>Ç</span>" + "N";
+      if (moveNumber % 2 == 0) {
+        pieceName = "<span>Ė</span>" + "N";
+      } else pieceName = "<span>Ç</span>" + "N";
     } else if (className.endsWith("b")) {
-      pieceName = "<span>Ă</span>" + "B";
+      if (moveNumber % 2 == 0) {
+        pieceName = "<span>Ä</span>" + "B";
+      } else pieceName = "<span>Ă</span>" + "B";
     } else if (className.endsWith("k")) {
-      pieceName = "<span>Ą</span>" + "K";
+      if (moveNumber % 2 == 0) {
+        pieceName = "<span>Ą</span>" + "K";
+      } else pieceName = "<span>Ā</span>" + "K";
     } else if (className.endsWith("q")) {
-      pieceName = "<span>Į</span>" + "Q";
+      if (moveNumber % 2 == 0) {
+        pieceName = "<span>Ķ</span>" + "Q";
+      } else pieceName = "<span>Į</span>" + "Q";
     } else if (className.endsWith("p")) {
       pieceName = "";
       if (taken) {
@@ -1161,9 +1174,7 @@ function getNotation(e, ogX, ogY, X, Y, taken) {
 function getPiece() {}
 
 // TO-DO:
-// make the moves class an after element
 // andere soorten interactie (text veld)
-// log moves
 
 // hoog contrast
 

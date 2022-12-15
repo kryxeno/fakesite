@@ -277,11 +277,11 @@ nav section:last-of-type ul:first-child button {
   padding-left: 1.6rem;
 }
 
-nav section:last-of-type form {
+form {
   margin: 0.8rem 1rem 2rem 1rem;
 }
 
-nav section:last-of-type form input {
+form input {
   background-color: var(--form-background);
   border: 0.1rem solid var(--form-background);
   border-radius: 0.3rem;
@@ -293,8 +293,8 @@ nav section:last-of-type form input {
   padding: 0.8rem;
 }
 
-nav section:last-of-type form input:focus,
-nav section:last-of-type form input:hover {
+form input:focus,
+form input:hover {
   outline: 0;
   border-color: var(--form-color);
 }
