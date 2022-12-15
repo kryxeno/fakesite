@@ -139,7 +139,7 @@ Play veranderen naar trofeeen of een soortgelijk woord. Ook kan de hover misschi
 
 ### Stand van zaken
 
-hier dit ging goed & dit was lastig (neem ook screenshots op van delen van je website en code)
+0 problemen.
 
 ### Agenda voor meeting
 
@@ -164,8 +164,6 @@ Kim
 
 ### Verslag van meeting
 
-hier na afloop snel de uitkomsten van de meeting vastleggen
-
 - Alles is uitgelegd. Zie de codepen voor uitwerking.
 
 </details>
@@ -177,26 +175,16 @@ hier na afloop snel de uitkomsten van de meeting vastleggen
 
 ### Stand van zaken
 
-hier dit ging goed & dit was lastig (neem ook screenshots op van delen van je website en code)
+0 problemen.
 
 ### Agenda voor meeting
 
-samen met je groepje opstellen
-
-| student 1      | student 2          | student 3    | student 4        |
-| -------------- | ------------------ | ------------ | ---------------- |
-| dit bespreken  | en dit             | en ik dit    | en dan ik dat    |
-| en dat ook nog | dit als er tijd is | nog een punt | dit wil ik zeker |
-| ...            | ...                | ...          | ...              |
+We hadden eigenlijk geen vragen.
+Ik wou gewoon verder werken.
 
 ### Verslag van meeting
 
-hier na afloop snel de uitkomsten van de meeting vastleggen
-
-- punt 1
-- punt 2
-- nog een punt
-- ...
+Er was niet echt veel gezegd. We gingen gewoon een beetje praten.
 
 </details>
 
@@ -207,31 +195,37 @@ hier na afloop snel de uitkomsten van de meeting vastleggen
 
 ### Bevindingen
 
-Lijst met je bevindingen die in de test naar voren kwamen (geef ook aan wat er verbeterd is):
-
 #### Screenreader
 
-Hier korte omschrijving (met indien nodig afbeeldingen)
+HTML language was niet engels (nu wel)
 
-Hier een omschrijving van hoe het opgelost kan worden (met indien nodig afbeeldingen)
+vs computer moet play vs computer worden
+
+advertentie kan misschien gedeclareert worden
+
+de a selector mist de light/dark mode (dit vind ik niet erg want als je een screenreader gebruikt is dat niet heel belangrijk).
 
 #### Muis en Toetsenbord
 
-Hier korte omschrijving (met indien nodig afbeeldingen)
+Je ziet de focus van het burger menu niet goed
 
-Hier een omschrijving van hoe het opgelost kan worden (met indien nodig afbeeldingen)
+het schaakbord is niet tab accessible
 
 #### Motoriek (shocks, elastiekjes)
 
-Hier korte omschrijving (met indien nodig afbeeldingen)
+Geen probleem eigenlijk
 
-Hier een omschrijving van hoe het opgelost kan worden (met indien nodig afbeeldingen)
+header zou iets groter kunenn zijn
 
 #### Visueel (brillen, contrast, kleurenblind, dark/light).
 
-Hier korte omschrijving (met indien nodig afbeeldingen)
+De sidebar hover zou beter zijn als het licht is
 
-Hier een omschrijving van hoe het opgelost kan worden (met indien nodig afbeeldingen)
+Als je hovert over de puzzel zou ook de titel kunnen hoveren
+
+bord gaat meer dan 100% verticaal
+
+kleurenpalet zou je toe kunnen voegen voor mensen met kleurenblindheid
 
 </details>
 
@@ -242,7 +236,7 @@ Hier een omschrijving van hoe het opgelost kan worden (met indien nodig afbeeldi
 
 ### Stand van zaken
 
-hier dit ging goed & dit was lastig (neem ook screenshots op van delen van je website en code)
+Geen problemen
 
 ### Agenda voor meeting
 
@@ -256,12 +250,7 @@ samen met je groepje opstellen
 
 ### Verslag van meeting
 
-hier na afloop snel de uitkomsten van de meeting vastleggen
-
-- punt 1
-- punt 2
-- nog een punt
-- ...
+Waren niet al te veel interessante revelaties.
 
 </details>
 
@@ -272,19 +261,20 @@ hier na afloop snel de uitkomsten van de meeting vastleggen
 
 ### Je uitkomst - karakteristiek screenshots:
 
-  <img src="readme-images/dummy-plaatje.jpg" width="375px" alt="uitomst opdracht 1">
+  <img src="./readme-images/final1.png" width="375px" alt="uitomst opdracht 1">
+
+  <img src="./readme-images/final2.png" width="375px" alt="uitomst opdracht 1">
 
 ### Dit ging goed/Heb ik geleerd:
 
-Korte omschrijving met plaatjes
+Alles ging goed en ik heb zeker veel geleerd over window mouse events en for loops.
 
-  <img src="readme-images/dummy-plaatje.jpg" width="375px" alt="top">
+  <img src="./readme-images/final3.png" width="375px" alt="uitomst opdracht 1">
 
 ### Dit was lastig/Is niet gelukt:
 
-Korte omschrijving met plaatjes
+Niks
 
-  <img src="readme-images/dummy-plaatje.jpg" width="375px" alt="bummer">
 </details>
 
 ## Bronnenlijst
@@ -294,8 +284,10 @@ Korte omschrijving met plaatjes
 
 Nb. Wees specifiek ('css-tricks' als bron is bijv. niet specifiek genoeg).
 
-1. bron 1
-2. bron 2
-3. ...
+1. Images en chess font komen direct van de chess website
+2. Darkmode: https://www.ditdot.hr/en/dark-mode-website-tutorial
+3. Beginnetje voor drag and drop: https://javascript.info/mouse-drag-and-drop
+4. Voorbeeld van chessmove hints: https://codepen.io/DevilSAM/pen/ZNoByE
+5. Voor de hidden class: https://www.a11yproject.com/posts/how-to-hide-content/
 
 </details>
