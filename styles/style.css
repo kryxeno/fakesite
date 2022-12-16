@@ -129,7 +129,7 @@ body > footer {
 /**************/
 
 /**************/
-/* START NAV */
+/* START header nav */
 /**************/
 
 html {
@@ -154,7 +154,7 @@ span {
   margin: 0 0.2rem 0 0.5rem;
 }
 
-nav > section:first-of-type {
+header nav > section:first-of-type {
   display: flex;
   justify-content: space-between;
   height: 6rem;
@@ -163,17 +163,17 @@ nav > section:first-of-type {
   margin-bottom: 0.5rem;
 }
 
-nav section:first-of-type div {
+header nav section:first-of-type div {
   display: flex;
   align-items: center;
 }
 
-nav ul {
+header nav ul {
   display: flex;
   gap: 0.8em;
 }
 
-nav li a,
+header nav li a,
 button {
   font-family: var(--icon-font);
   font-size: 3.8rem;
@@ -182,19 +182,19 @@ button {
   /* transition: 0.1s; */
 }
 
-nav section:first-of-type div button {
+header nav section:first-of-type div button {
   font-size: 5rem;
   padding: 1rem;
   margin-left: -1rem;
 }
 
-nav li a:hover,
-nav section:first-of-type div button:hover,
-nav section:first-of-type div a:first-child:hover {
+header nav li a:hover,
+header nav section:first-of-type div button:hover,
+header nav section:first-of-type div a:first-child:hover {
   color: var(--secondary-color-text-hover);
 }
 
-nav section:first-of-type div a:nth-child(2)::before {
+header nav section:first-of-type div a:nth-child(2)::before {
   background: url("../images/nav.868410a1.png");
   background-color: var(--icon-fallback);
   background-repeat: repeat;
@@ -214,7 +214,7 @@ nav section:first-of-type div a:nth-child(2)::before {
   margin-left: 2rem;
 }
 
-nav section:first-of-type > a {
+header nav section:first-of-type > a {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
   height: 1px;
@@ -224,7 +224,7 @@ nav section:first-of-type > a {
   width: 1px;
 }
 
-nav section:first-of-type > a:focus {
+header nav section:first-of-type > a:focus {
   clip: unset;
   clip-path: none;
   height: auto;
@@ -234,7 +234,7 @@ nav section:first-of-type > a:focus {
   width: auto;
 }
 
-nav section:last-of-type {
+header nav section:last-of-type {
   position: fixed;
   height: 100%;
   width: 14.6rem;
@@ -250,23 +250,23 @@ nav section:last-of-type {
   justify-content: space-between;
 }
 
-nav section:last-of-type.menuOpen {
+header nav section:last-of-type.menuOpen {
   transform: translateX(0%);
 }
 
-nav section:last-of-type ul {
+header nav section:last-of-type ul {
   flex-direction: column;
   gap: 0;
 }
 
-nav section:last-of-type ul:first-child li:not(:last-child):hover,
-nav section:last-of-type ul:last-child li:hover {
+header nav section:last-of-type ul:first-child li:not(:last-child):hover,
+header nav section:last-of-type ul:last-child li:hover {
   background-color: var(--sidemenu-background-hover);
 }
 
-nav section:last-of-type li a,
-nav section:last-of-type ul:first-child button,
-nav section:last-of-type ul:last-child button {
+header nav section:last-of-type li a,
+header nav section:last-of-type ul:first-child button,
+header nav section:last-of-type ul:last-child button {
   color: var(--tertiary-color-text);
   padding: 0.8rem 0 0.8rem 1rem;
   min-height: 4.5rem;
@@ -275,7 +275,7 @@ nav section:last-of-type ul:last-child button {
   align-items: center;
 }
 
-nav section:last-of-type ul:first-child button {
+header nav section:last-of-type ul:first-child button {
   padding-left: 1.6rem;
 }
 
@@ -301,17 +301,17 @@ form input:hover {
   border-color: var(--form-color);
 }
 
-nav section:last-of-type ul:first-child li:not(:first-child) a {
+header nav section:last-of-type ul:first-child li:not(:first-child) a {
   font-family: var(--primary-font);
   font-size: 1.6rem;
   font-weight: bold;
 }
 
-nav section:last-of-type ul:first-child li:nth-last-child(2) a {
+header nav section:last-of-type ul:first-child li:nth-last-child(2) a {
   color: #52b1dc;
 }
 
-nav section:last-of-type ul:first-child li:not(:first-child) a::before {
+header nav section:last-of-type ul:first-child li:not(:first-child) a::before {
   background: url("../images/nav.868410a1.png");
   background-color: var(--icon-fallback);
   background-repeat: repeat;
@@ -327,50 +327,50 @@ nav section:last-of-type ul:first-child li:not(:first-child) a::before {
   margin-right: 1rem;
 }
 
-nav section:last-of-type ul:first-child li:nth-child(2) a::before {
+header nav section:last-of-type ul:first-child li:nth-child(2) a::before {
   height: 2.15rem;
   background-position: 0.2rem -54.36rem;
   background-size: 18rem 158.7rem;
 }
 
-nav section:last-of-type ul:first-child li:nth-child(3) a::before {
+header nav section:last-of-type ul:first-child li:nth-child(3) a::before {
   background-position: -2.1rem -7.8rem;
 }
 
-nav section:last-of-type ul:first-child li:nth-child(4) a::before {
+header nav section:last-of-type ul:first-child li:nth-child(4) a::before {
   background-position: -2.3rem -11.4rem;
 }
 
-nav section:last-of-type ul:first-child li:nth-child(5) a::before {
+header nav section:last-of-type ul:first-child li:nth-child(5) a::before {
   background-position: -2.3rem -15.15rem;
 }
 
-nav section:last-of-type ul:first-child li:nth-child(6) a::before {
+header nav section:last-of-type ul:first-child li:nth-child(6) a::before {
   background-position: -2.3rem -18.75rem;
 }
 
-nav section:last-of-type ul:first-child li:nth-child(7) a::before {
+header nav section:last-of-type ul:first-child li:nth-child(7) a::before {
   background-position: -2.3rem -33.75rem;
 }
 
-nav section:last-of-type ul:first-child li:nth-child(8) a::before {
+header nav section:last-of-type ul:first-child li:nth-child(8) a::before {
   background-position: -2.3rem -22.65rem;
 }
 
-nav section:last-of-type ul:first-child li:nth-child(9) a::before {
+header nav section:last-of-type ul:first-child li:nth-child(9) a::before {
   background-position: -2.3rem -26.25rem;
 }
 
-nav section:last-of-type ul:first-child li:nth-child(10) a::before {
+header nav section:last-of-type ul:first-child li:nth-child(10) a::before {
   background-position: -2.3rem -30rem;
 }
 
-nav section:last-of-type ul:last-child {
+header nav section:last-of-type ul:last-child {
   margin: auto 0 2.5rem;
 }
 
-nav section:last-of-type ul:last-child a,
-nav section:last-of-type ul:last-child button {
+header nav section:last-of-type ul:last-child a,
+header nav section:last-of-type ul:last-child button {
   font-family: var(--primary-font);
   font-size: 1.3rem;
   font-weight: 600;
@@ -381,7 +381,7 @@ nav section:last-of-type ul:last-child button {
   text-align: left;
 }
 
-nav section:last-of-type ul:last-child li span {
+header nav section:last-of-type ul:last-child li span {
   font-family: var(--icon-font);
   font-size: 3.2rem;
   font-weight: 400;
@@ -390,7 +390,7 @@ nav section:last-of-type ul:last-child li span {
   margin: 0 0.2rem 0 0.5rem;
 }
 
-nav section:last-of-type ul:last-child li span:nth-child(2) {
+header nav section:last-of-type ul:last-child li span:nth-child(2) {
   font-family: var(--primary-font);
   font-size: 1.3rem;
   font-weight: 600;
@@ -399,8 +399,8 @@ nav section:last-of-type ul:last-child li span:nth-child(2) {
   margin: 0;
 }
 
-nav section:last-of-type ul li a:hover,
-nav section:last-of-type ul li button:hover {
+header nav section:last-of-type ul li a:hover,
+header nav section:last-of-type ul li button:hover {
   color: var(--primary-color-text);
 }
 
